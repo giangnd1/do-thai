@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trí Tuệ Do Thái — 100 Khái Niệm Cốt Lõi</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+:root{--cream:#FDFAF2;--parchment:#F5EDD8;--gold:#C9972B;--gold-light:#E8C46A;--gold-pale:#FBF3DC;--ink:#1A1410;--ink-mid:#3D2B1F;--ink-soft:#6B5744;--border:#DDD0B3;--accent-blue:#1C3557;--tag-bg:#EEE5CC;--shadow:0 2px 16px rgba(90,60,20,.10);--shadow-hover:0 6px 32px rgba(90,60,20,.18)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;min-height:100vh}
+header{background:var(--accent-blue);color:#fff;padding:52px 24px 40px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'✡';position:absolute;font-size:340px;opacity:.04;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;line-height:1}
+.header-eyebrow{font-size:11px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px}
+header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:10px}
+header h1 span{color:var(--gold-light)}
+.header-sub{font-family:'EB Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.72);max-width:560px;margin:0 auto 22px}
+.header-meta{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.meta-pill{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:5px 16px;font-size:12px;color:rgba(255,255,255,.85);letter-spacing:.5px}
+.controls{background:var(--parchment);border-bottom:2px solid var(--border);padding:18px 24px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(90,60,20,.08)}
+.search-wrap{max-width:520px;margin:0 auto 14px;position:relative}
+.search-wrap input{width:100%;padding:11px 18px 11px 42px;border:2px solid var(--border);border-radius:30px;background:#fff;font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s}
+.search-wrap input:focus{border-color:var(--gold)}
+.search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:16px;opacity:.4}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:0;justify-content:center;flex-wrap:wrap}
+.tab{padding:8px 18px;border:none;background:transparent;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;border-bottom:3px solid transparent;border-radius:4px 4px 0 0;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--gold);background:rgba(201,151,43,.07)}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,151,43,.10)}
+.stats-bar{text-align:center;padding:10px;font-size:12.5px;color:var(--ink-soft);background:var(--cream);border-bottom:1px solid var(--border)}
+.grid-wrap{max-width:1240px;margin:0 auto;padding:28px 20px 60px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .22s,border-color .22s,transform .18s;cursor:pointer;box-shadow:var(--shadow)}
+.card:hover{box-shadow:var(--shadow-hover);border-color:var(--gold-light);transform:translateY(-2px)}
+.card.open{border-color:var(--gold);box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.card-header{padding:16px 18px 14px;display:flex;align-items:flex-start;gap:13px}
+.card-num{font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:var(--gold);min-width:28px;padding-top:2px;opacity:.8}
+.card-title-wrap{flex:1}
+.card-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:3px}
+.card-en{font-size:11.5px;color:var(--ink-soft);font-style:italic;font-family:'EB Garamond',serif}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.tag{font-size:10px;font-weight:600;letter-spacing:.5px;padding:2px 8px;border-radius:10px;background:var(--tag-bg);color:var(--ink-soft);text-transform:uppercase}
+.tag.tư-duy{background:#E3F0FF;color:#1C3557}
+.tag.kinh-doanh{background:#E8F7EC;color:#1A6636}
+.tag.giáo-dục{background:#FFF3E0;color:#B25E00}
+.tag.cuộc-sống{background:#F3E8FF;color:#5B2D8E}
+.tag.tâm-linh{background:#FFF0F3;color:#8E1A3C}
+.tag.mental-model{background:#1C3557;color:#E8C46A}
+.card-chevron{font-size:13px;color:var(--gold);transition:transform .3s;padding-top:3px;flex-shrink:0}
+.card.open .card-chevron{transform:rotate(180deg)}
+.card-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+.card.open .card-body{max-height:1400px}
+.card-inner{padding:0 18px 20px;border-top:1px solid var(--border)}
+.section-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:16px 0 6px}
+.card-inner p{font-size:14px;line-height:1.75;color:var(--ink-mid);margin-bottom:10px}
+.card-inner b,.card-inner strong{color:var(--ink);font-weight:700}
+.example-box{background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:11px 14px;margin-top:10px;color:var(--ink-mid);line-height:1.65;font-family:'EB Garamond',serif;font-size:15px}
+.quote-box{background:var(--parchment);border-radius:8px;padding:10px 14px 10px 28px;margin-top:10px;font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:var(--ink-soft);position:relative}
+.quote-box::before{content:'"';font-size:36px;color:var(--gold-light);position:absolute;left:8px;top:0;font-family:'Playfair Display',serif;line-height:1}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--ink-soft);font-family:'EB Garamond',serif;font-size:1.1rem;font-style:italic}
+footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:12.5px;letter-spacing:.5px}
+footer span{color:var(--gold-light)}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-eyebrow">Từ Tanakh • Talmud • Mishnah • Kabbalah</div>
+  <h1>Trí Tuệ <span>Do Thái</span></h1>
+  <p class="header-sub">100 khái niệm cốt lõi đúc kết từ hàng nghìn năm triết học, kinh doanh, giáo dục và tư duy của người Do Thái</p>
+  <div class="header-meta">
+    <span class="meta-pill">✡ 100 Khái Niệm</span>
+    <span class="meta-pill">📜 Từ Kinh Điển Gốc</span>
+    <span class="meta-pill">🧠 Tích Hợp Mental Models</span>
+    <span class="meta-pill">💡 Ví Dụ Thực Tiễn</span>
+  </div>
+</header>
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Tìm kiếm khái niệm...">
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-cat="all">Tất cả (100)</button>
+    <button class="tab" data-cat="tư-duy">Tư Duy</button>
+    <button class="tab" data-cat="kinh-doanh">Kinh Doanh</button>
+    <button class="tab" data-cat="giáo-dục">Giáo Dục</button>
+    <button class="tab" data-cat="cuộc-sống">Cuộc Sống</button>
+    <button class="tab" data-cat="tâm-linh">Tâm Linh</button>
+    <button class="tab" data-cat="mental-model">Mental Models</button>
+  </div>
+</div>
+<div class="stats-bar" id="statsBar">Đang hiển thị 100 khái niệm</div>
+<div class="grid-wrap"><div class="grid" id="cardGrid"></div></div>
+<footer><p>✡ <span>Trí Tuệ Do Thái</span> — Tổng hợp từ Tanakh, Talmud, Mishnah, Kabbalah &amp; Các Văn Bản Cổ Điển</p></footer>
+<script>
+const C=[
+{id:1,name:"Tikkun Olam",en:"Tikkun Olam — Repair the World",tags:["cuộc-sống","tư-duy","mental-model"],
+core:`<b>Tikkun Olam</b> (sửa chữa thế giới) là một trong những triết lý trung tâm nhất của tư tưởng Do Thái. Ý tưởng gốc xuất phát từ Kabbalah: vũ trụ được tạo ra nhưng còn khiếm khuyết — và con người được sinh ra với sứ mệnh hoàn thiện nó. Đây không phải lý tưởng viển vông, mà là <b>trách nhiệm hành động cụ thể</b> mỗi ngày. Người Do Thái không hỏi "thế giới này có hoàn hảo không?" — họ hỏi "hôm nay tôi đã làm gì để nó tốt hơn?"`,
+mental:`Nền tảng của <b>tư duy đóng góp (Contribution Mindset)</b> và <b>trách nhiệm hệ thống (Systems Responsibility)</b>. Thay vì thụ động quan sát, bạn trở thành nhân tố chủ động trong vòng phản hồi của thế giới.`,
+ex:`Warren Buffett và Bill Gates khi lập "The Giving Pledge" — cam kết trao phần lớn tài sản cho nhân loại — đang thực hành Tikkun Olam theo nghĩa hiện đại: làm giàu để sửa chữa thế giới, không phải để tích lũy.`,
+q:`Whoever saves a single life, it is as if he saved an entire world. — Talmud, Sanhedrin 4:5`},
+{id:2,name:"Chutzpah",en:"Chutzpah — Audacious Courage",tags:["kinh-doanh","tư-duy","mental-model"],
+core:`<b>Chutzpah</b> là từ Yiddish không có bản dịch chính xác — sự pha trộn của can đảm, táo bạo và tự tin vượt ranh giới thông thường. Không phải kiêu ngạo — mà là <b>dám làm điều người khác cho là không thể</b>. Người Do Thái coi Chutzpah là mỹ đức: thay vì chờ phép, hãy xin tha thứ. Thay vì hỏi "liệu có thể không?", hãy hỏi "làm thế nào để làm được?"`,
+mental:`Liên quan trực tiếp đến <b>First Principles Thinking</b> và <b>Bias for Action</b>. Chutzpah phá vỡ <b>Status Quo Bias</b> — sự ưa thích giữ nguyên hiện trạng.`,
+ex:`Khi còn là sinh viên, Larry Page và Sergey Brin gõ cửa hàng chục công ty để bán thuật toán tìm kiếm với giá 1 triệu đô. Không ai mua. Họ tự lập Google. Đó là Chutzpah.`,q:``},
+{id:3,name:"Chokhmah",en:"Chokhmah — Wisdom / Flash Insight",tags:["tư-duy","mental-model"],
+core:`Trong hệ thống <b>Sefirot</b> của Kabbalah, <b>Chokhmah</b> là trí tuệ tức thời — tia sáng nhận thức đầu tiên, trước khi lý trí kịp xử lý. Đây là trạng thái "biết mà không giải thích được tại sao biết" — thứ khoa học hiện đại gọi là <b>trực giác chuyên gia</b>. Chokhmah là hạt giống của ý tưởng; <b>Binah</b> (hiểu biết phân tích) là quá trình ươm mầm nó thành kiến thức có thể áp dụng.`,
+mental:`Chokhmah mô tả <b>Hệ thống 1 (System 1 Thinking)</b> của Kahneman — tư duy nhanh, trực giác. Binah là <b>Hệ thống 2</b> — tư duy chậm, phân tích. Trí tuệ thực sự cần cả hai.`,
+ex:`Bác sĩ giàu kinh nghiệm nhìn vào khuôn mặt bệnh nhân và ngay lập tức "cảm thấy" có gì đó không ổn — dù chỉ số xét nghiệm bình thường. Đó là Chokhmah. Rồi họ ra lệnh làm thêm xét nghiệm (Binah) để xác nhận.`,q:``},
+{id:4,name:"Binah",en:"Binah — Deep Understanding / Analysis",tags:["tư-duy","giáo-dục","mental-model"],
+core:`<b>Binah</b> là tầng thứ hai trong ba tầng trí tuệ Kabbalah. Nếu Chokhmah là tia sáng chớp, thì Binah là quá trình <b>giải mã và phân tích</b> tia sáng đó — nơi ý tưởng được ấp ủ, lật đi lật lại, xem xét từ mọi góc độ. Talmud dạy: không học viên nào được thỏa mãn với ghi nhớ — họ phải đạt đến Binah: <b>hiểu tại sao</b>.`,
+mental:`Nền tảng của <b>Second-Order Thinking</b> và <b>Root Cause Analysis</b>. Đây là khác biệt giữa người nhìn thấy triệu chứng và người tìm được nguyên nhân.`,
+ex:`Startup thấy doanh số giảm. Người thiếu Binah tung ngay khuyến mãi. Người có Binah hỏi: tại sao khách hàng rời đi? → Phát hiện sản phẩm cạnh tranh mới → Tập trung cải tiến sản phẩm thay vì đốt tiền marketing.`,q:``},
+{id:5,name:"Da'at",en:"Da'at — Integrated Knowledge / Embodied Knowing",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`<b>Da'at</b> là tầng cao nhất của tri thức — không phải hiểu biết lý thuyết, mà là <b>tri thức được nội hóa hoàn toàn</b>, thay đổi con người từ bên trong. Từ "Da'at" trong Torah còn mang nghĩa "giao hợp" — sự kết hợp hoàn toàn giữa người biết và điều được biết. Đỉnh cao không phải học thuật — mà là khi kiến thức trở thành hành vi tự nhiên, không cần suy nghĩ.`,
+mental:`Mô tả của <b>Unconscious Competence</b> trong mô hình 4 giai đoạn học tập và khái niệm <b>Tacit Knowledge</b> (kiến thức ngầm) của Michael Polanyi.`,
+ex:`Sự khác biệt giữa người đọc 100 cuốn sách về thiền định và người thực sự thiền định 10 năm. Người đầu có kiến thức; người sau có Da'at — họ không "biết về" thiền, họ "là" thiền.`,q:``},
+{id:6,name:"Machloket l'shem shamayim",en:"Machloket l'shem shamayim — Argument for Heaven's Sake",tags:["tư-duy","giáo-dục","mental-model"],
+core:`Người Do Thái nâng tranh luận lên thành nghệ thuật thiêng liêng. <b>Machloket l'shem shamayim</b> — "tranh luận vì mục đích chân lý" — là nguyên tắc nền tảng của học thuật Do Thái. Talmud được xây dựng trên vô số cuộc tranh luận — và cả hai phía đều được ghi lại, dù phía thua cuộc. Vì người Do Thái tin rằng <b>chân lý là công trình tập thể</b> của tất cả những ai tranh luận trung thực.`,
+mental:`Nền tảng của <b>Intellectual Humility</b> và <b>Steel Man Argument</b> — hiểu quan điểm đối lập ở phiên bản mạnh nhất, không phải phiên bản yếu nhất để dễ phản bác.`,
+ex:`CEO giỏi không chỉ muốn nghe người đồng ý. Họ chủ động mời người có quan điểm ngược lại trình bày — vì Machloket l'shem shamayim dạy rằng quyết định tốt nhất sinh ra từ căng thẳng của các góc nhìn đối lập.`,
+q:`A dispute for the sake of Heaven will have lasting value. — Mishnah Avot 5:17`},
+{id:7,name:"Eilu v'Eilu",en:"Eilu v'Eilu — Both These and These Are Words of the Living God",tags:["tư-duy","mental-model"],
+core:`Khi Trường phái Shammai và Hillel tranh luận và kết luận mâu thuẫn nhau — Talmud ghi lại rằng một giọng nói từ Thiên Đàng phán: "<b>Cả hai đều là lời của Thượng Đế hằng sống.</b>" Người Do Thái học được sự thoải mái với <b>mâu thuẫn không thể giải quyết</b> — và không cần tiêu diệt một bên để bên kia tồn tại.`,
+mental:`Hình thức tinh tế nhất của <b>Dialectical Thinking</b> — vượt qua tư duy nhị phân đúng/sai. Liên quan đến <b>Negative Capability</b> của Keats: khả năng tồn tại trong sự bất định mà không vội vã tìm câu trả lời.`,
+ex:`Trong thiết kế sản phẩm: "Người dùng muốn đơn giản" VÀ "người dùng muốn tính năng phong phú" — đều đúng. Nhà thiết kế giỏi không chọn một, họ giữ cả hai trong căng thẳng sáng tạo.`,
+q:`Eilu v'eilu divrei Elohim chayyim — Both these and these are words of the Living God.`},
+{id:8,name:"Talmud Torah",en:"Talmud Torah — Lifelong Learning as Sacred Duty",tags:["giáo-dục","tư-duy","mental-model"],
+core:`Không có dân tộc nào coi việc học như người Do Thái. <b>Talmud Torah</b> — việc học tập liên tục — không phải lựa chọn mà là <b>nghĩa vụ thiêng liêng</b>, tương đương với các nghi lễ tôn giáo. Ngay cả vào ngày Yom Kippur — ngày nhịn ăn thiêng liêng nhất — người Do Thái vẫn tiếp tục học Talmud. Người Do Thái tin rằng ngừng học là ngừng sống. Đây là lý do tỷ lệ giải thưởng Nobel của người Do Thái (0.2% dân số thế giới, ~22% giải Nobel) là phi thường.`,
+mental:`Ứng dụng sớm nhất của <b>Growth Mindset</b> (Carol Dweck) và <b>Deliberate Practice</b> (Anders Ericsson). Nền tảng của <b>Compounding Knowledge</b> — kiến thức tích lũy như lãi kép.`,
+ex:`Charlie Munger đọc sách mỗi ngày cho đến khi qua đời ở tuổi 99. Khi được hỏi bí quyết: "Tôi chưa bao giờ gặp người khôn ngoan nào mà không đọc sách liên tục." Đó là tinh thần Talmud Torah trong đầu tư.`,q:``},
+{id:9,name:"Chazarah",en:"Chazarah — Deliberate Repetition",tags:["giáo-dục","mental-model"],
+core:`<b>Chazarah</b> là nguyên tắc ôn tập có chủ đích — được hệ thống hóa trong phương pháp học Talmud hàng nghìn năm trước khi khoa học thần kinh xác nhận hiệu quả. Người học Talmud truyền thống lặp lại một đoạn văn ít nhất <b>101 lần</b> — không phải vẹt, mà mỗi lần đọc lại ở tầng sâu hơn, tìm ra ý nghĩa mới. Đây là lý do người Do Thái có thể đọc cùng đoạn Torah mỗi năm suốt cả cuộc đời mà vẫn tìm thấy điều mới.`,
+mental:`Tiền thân của <b>Spaced Repetition</b> — phương pháp học được chứng minh hiệu quả nhất bởi khoa học thần kinh hiện đại. Liên quan đến <b>Elaborative Interrogation</b> — tự đặt câu hỏi để đào sâu.`,
+ex:`Thay vì đọc 10 cuốn sách mỗi tháng và quên hết sau 3 tháng, người áp dụng Chazarah đọc 3 cuốn, ghi chú, ôn lại sau 1 tuần, 1 tháng, 3 tháng — và nhớ cả đời.`,q:``},
+{id:10,name:"Chevruta",en:"Chevruta — Peer Learning Partnership",tags:["giáo-dục","kinh-doanh","mental-model"],
+core:`Trong các trường học Do Thái truyền thống, không ai học một mình. <b>Chevruta</b> là học theo cặp — hai người ngồi đối mặt, đọc cùng văn bản, tranh luận, chất vấn, giải thích lại cho nhau. Không phải thầy-trò, mà là <b>hai người cùng khai phá</b>. Người Do Thái tin rằng: một mình bạn chỉ hiểu được một nửa — nửa còn lại xuất hiện khi bạn phải giải thích cho người khác.`,
+mental:`Ứng dụng của <b>Protégé Effect</b> (học tốt nhất khi dạy người khác) và <b>Socratic Method</b>. Nền tảng của văn hóa <b>Peer Coaching</b>.`,
+ex:`Jeff Bezos yêu cầu lãnh đạo Amazon viết memo 6 trang trước mỗi cuộc họp và đọc to cho nhau nghe. Ý tưởng chỉ thực sự rõ ràng khi bạn phải diễn đạt nó cho người khác.`,q:``},
+{id:11,name:"Tzedakah",en:"Tzedakah — Justice-Based Giving",tags:["cuộc-sống","kinh-doanh","mental-model"],
+core:`Trong tiếng Anh, "Tzedakah" thường dịch là "từ thiện" — nhưng đó là bản dịch sai lầm. Tzedakah bắt nguồn từ gốc "<b>Tzedek</b>" — công lý, ngay thẳng. Nghĩa là: cho đi không phải vì lòng tốt, mà vì đó là <b>điều đúng đắn</b>. Nghèo đói là sự bất công của hệ thống, và người có của cải có nghĩa vụ sửa chữa sự bất công đó. Maimonides định nghĩa <b>8 tầng Tzedakah</b>, từ thấp nhất đến cao nhất (giúp người tự lực).`,
+mental:`Nền tảng của <b>Systemic Thinking về bất bình đẳng</b> và khái niệm <b>Reciprocal Obligation</b>. Ứng dụng thực tiễn của <b>Long-Term Thinking</b>.`,
+ex:`Tầng cao nhất của Tzedakah theo Maimonides: cho người vay vốn không lãi, tìm việc làm cho họ, hoặc đầu tư vào doanh nghiệp của họ — để họ không cần nhận từ thiện nữa. Đây chính là triết lý của quỹ tín dụng vi mô Grameen Bank.`,
+q:`The highest form of charity is to help sustain a person before they become impoverished. — Maimonides`},
+{id:12,name:"Lashon Hara",en:"Lashon Hara — The Evil Tongue / Power of Words",tags:["cuộc-sống","tư-duy","mental-model"],
+core:`<b>Lashon Hara</b> (ngôn ngữ xấu) là tác hại của lời nói tiêu cực — kể cả khi nó đúng sự thật. Người Do Thái tin rằng lan truyền thông tin tiêu cực về người khác — dù chính xác — là một trong những tội lỗi nghiêm trọng nhất, vì nó <b>không thể thu hồi</b>. Talmud dùng hình ảnh: người nói Lashon Hara giống như xé một cái gối lông vũ trên đỉnh núi trong cơn gió — rồi được yêu cầu thu nhặt lại tất cả. Không thể.`,
+mental:`Nghiên cứu về <b>Information Hazard</b> và <b>Reputational Cascades</b>. Liên quan đến nguyên tắc "nói thẳng với người có thể thay đổi" trong văn hóa phản hồi trực tiếp.`,
+ex:`Trong team, một nhân viên phàn nàn với đồng nghiệp về quyết định của sếp — dù đúng. Điều này tạo ra "vi khuẩn" tiêu cực làm suy yếu tinh thần cả nhóm. Lashon Hara dạy: nếu có vấn đề, nói thẳng với người có thể thay đổi.`,q:``},
+{id:13,name:"Heshbon HaNefesh",en:"Heshbon HaNefesh — Accounting of the Soul",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`<b>Heshbon HaNefesh</b> — "kiểm toán tâm hồn" — là công cụ tự phát triển bản thân hệ thống nhất trong lịch sử. Rabbi Menachem Lefin tạo ra một phương pháp: chọn <b>một đức hạnh mỗi tuần</b>, theo dõi hành vi bằng bảng tính chi tiết, đánh giá điểm mỗi ngày, rồi chuyển sang đức hạnh tiếp theo. Không phải thay đổi toàn diện một lúc — mà là cải tiến <b>từng phần nhỏ, liên tục</b>.`,
+mental:`Tiền thân của <b>Daily Journaling</b>, <b>Habit Tracking</b>, và triết lý <b>Kaizen</b>. Ứng dụng của <b>Self-Quantification</b> trong thế giới hiện đại.`,
+ex:`Ben Franklin theo dõi 13 đức hạnh trong nhật ký mỗi ngày. Ông thú nhận không bao giờ đạt hoàn hảo, nhưng trở nên tốt hơn nhiều nhờ việc cố gắng. Đó là tinh thần Heshbon HaNefesh.`,q:``},
+{id:14,name:"Mussar",en:"Mussar — Ethical Self-Cultivation",tags:["tư-duy","cuộc-sống","giáo-dục"],
+core:`<b>Mussar</b> là phong trào đạo đức-tinh thần Do Thái, được Rabbi Israel Salanter sáng lập vào thế kỷ 19 như phản ứng trước nguy cơ: người Do Thái học nhiều nhưng không trở nên tốt hơn. Mussar tuyên bố: <b>đức hạnh không phải là thiên bẩm — đó là kỹ năng có thể luyện tập</b>. Mỗi người có một "<b>Shoresh Neshama</b>" (gốc rễ tâm hồn) — đức hạnh cốt lõi cần phát triển nhất.`,
+mental:`Ứng dụng Do Thái của <b>Virtue Ethics</b> của Aristotle. Liên quan đến <b>Character Building</b> và <b>Deliberate Practice</b>.`,
+ex:`Bài tập Mussar điển hình: trong một tuần, mỗi khi chuẩn bị nói, dừng lại 3 giây. Quan sát: lời sắp nói có xuất phát từ bản ngã, từ sợ hãi, hay từ mong muốn thực sự giúp đỡ? Bài tập nhỏ, nhưng thay đổi cách giao tiếp hoàn toàn.`,q:``},
+{id:15,name:"Anavah",en:"Anavah — Genuine Humility",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`<b>Anavah</b> (khiêm tốn thực sự) trong tư tưởng Do Thái không có nghĩa là tự ti hay hạ thấp bản thân. Moses được gọi là người khiêm tốn nhất trên đời — nhưng cũng là người lãnh đạo xuất sắc nhất. Người Do Thái định nghĩa Anavah là: <b>biết chính xác mình là ai — không nhiều hơn, không ít hơn</b>. Người có Anavah có thể nói "Tôi sai" mà không cảm thấy bị đe dọa.`,
+mental:`Điều kiện cần của <b>Intellectual Humility</b> và <b>Beginner's Mind</b>. Đặc điểm chung của những nhà lãnh đạo "Level 5" trong nghiên cứu của Jim Collins.`,
+ex:`Ray Dalio xây dựng toàn bộ Bridgewater trên nguyên tắc "Radical Truthfulness" — ghi âm mọi cuộc họp và khuyến khích mọi người phản bác ông trực tiếp. Đó là Anavah trong hành động.`,q:``},
+{id:16,name:"Emunah",en:"Emunah — Active Faith / Trust",tags:["tư-duy","tâm-linh","cuộc-sống"],
+core:`<b>Emunah</b> thường được dịch là "đức tin" — nhưng gốc của từ là "Aman" — <b>vững chắc, đáng tin cậy</b> (từ đây cũng xuất phát "Amen"). Emunah không phải niềm tin mù quáng, mà là <b>sự tin tưởng được xây dựng trên lịch sử trải nghiệm</b>. Như người thợ lành nghề tin vào công cụ của mình vì đã dùng, thử nghiệm, và biết rõ giới hạn của nó.`,
+mental:`Emunah mô tả <b>Process Faith over Outcome Attachment</b> — tin vào quá trình hơn là chấp thủ vào kết quả cụ thể. Liên quan đến <b>Stoic Dichotomy of Control</b>.`,
+ex:`Nhà đầu tư dài hạn như Buffett không cần biết thị trường ngày mai sẽ thế nào. Họ có Emunah vào nền kinh tế dài hạn — được xây dựng từ hàng thập kỷ quan sát, không phải từ niềm tin mù quáng.`,q:``},
+{id:17,name:"Bitachon",en:"Bitachon — Confident Trust in Process",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`<b>Bitachon</b> khác với Emunah: Emunah là tin quy luật vũ trụ tồn tại; Bitachon là <b>tin rằng quy luật đó đang hoạt động vì lợi ích cao nhất của bạn — ngay cả khi bạn không thấy</b>. Chovot HaLevavot (thế kỷ 11) dạy: người có Bitachon không lo lắng về tương lai, vì họ biết rằng kết quả không nằm trong tay họ — chỉ có hành động là trong tay họ. Điều này giải phóng năng lượng khỏi lo âu và chuyển vào hành động hiện tại.`,
+mental:`Mô tả tinh thần của <b>Stoic Amor Fati</b> (yêu số phận) và <b>Locus of Control</b> — tập trung vào những gì mình kiểm soát được.`,
+ex:`Nhà sáng lập startup sau khi launch sản phẩm: thay vì lo ngại liệu thị trường có chấp nhận không, họ tập trung vào việc cải thiện mỗi ngày. Không phải vô trách nhiệm — mà là sự tập trung có chủ đích.`,q:``},
+{id:18,name:"Shabbat",en:"Shabbat — Sacred Rest as Productivity Tool",tags:["cuộc-sống","kinh-doanh","mental-model"],
+core:`<b>Shabbat</b> là một trong những phát minh cách mạng nhất của người Do Thái: <b>một ngày trong bảy ngày hoàn toàn không làm việc</b>. Từ thứ Sáu lúc hoàng hôn đến thứ Bảy khi tối, mọi hoạt động tạo ra đều dừng lại — không điện thoại, không email, không kinh doanh. Không phải từ sự lười biếng — mà từ triết lý: <b>con người không phải là công cụ sản xuất</b>. Sáng tạo cần nghỉ ngơi. Ý tưởng tốt nhất xuất hiện trong khoảng trống.`,
+mental:`Ứng dụng cổ đại của <b>Recovery Principle</b> và <b>Incubation Effect</b> trong tâm lý học sáng tạo. Thực hành <b>Digital Detox</b> được khoa học thần kinh xác nhận.`,
+ex:`Jeff Weiner (CEO LinkedIn) thực hành "buffer time" — các khoảng trống hoàn toàn không lên lịch trong tuần. Ông nói đây là nơi những ý tưởng chiến lược quan trọng nhất xuất hiện. Đó là Shabbat trong ngôn ngữ hiện đại.`,
+q:`More than Israel has kept Shabbat, Shabbat has kept Israel. — Ahad Ha'am`},
+{id:19,name:"Teshuvah",en:"Teshuvah — Return / Course Correction",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`<b>Teshuvah</b> (trở về) là quy trình chủ động bốn bước: (1) Nhận ra sai lầm, (2) Hối lỗi thực sự, (3) Sửa chữa thiệt hại đã gây ra, (4) Thay đổi hành vi để không tái phạm. Talmud dạy: "Ở nơi người hối cải đứng, ngay cả người hoàn toàn công chính cũng không thể đứng được" — nghĩa là việc nhận ra lỗi và thay đổi được tôn trọng hơn cả sự hoàn hảo.`,
+mental:`Quy trình <b>Error Correction Loop</b> trong hệ thống. Liên quan đến <b>After-Action Review</b> của quân đội Mỹ và văn hóa <b>Blameless Post-mortem</b> của kỹ thuật phần mềm.`,
+ex:`Sau mỗi chiến dịch marketing thất bại, team áp dụng Teshuvah: không đổ lỗi, họ phân tích — điều gì xảy ra? Ai bị tổn hại? Làm gì để sửa? Thay đổi gì để lần sau khác? Câu hỏi thứ tư là quan trọng nhất.`,q:``},
+{id:20,name:"Kavod HaBriot",en:"Kavod HaBriot — Human Dignity as Non-Negotiable",tags:["cuộc-sống","kinh-doanh","tư-duy"],
+core:`<b>Kavod HaBriot</b> — phẩm giá của mọi sinh linh — là nguyên tắc đạo đức tối thượng trong luật Do Thái. Talmud tuyên bố bảo vệ phẩm giá con người có thể ghi đè nhiều điều luật khác. Trong Do Thái giáo, phẩm giá không phụ thuộc vào thành tích, địa vị hay đức hạnh — nó là <b>bẩm sinh, không thể mất</b>. Mỗi con người là một vũ trụ hoàn chỉnh. Làm nhục một người là phá hủy một vũ trụ.`,
+mental:`Nền tảng triết học của <b>Unconditional Positive Regard</b> (Carl Rogers) và <b>Human-Centered Design</b>. Cơ sở của văn hóa tổ chức lành mạnh.`,
+ex:`Nhà quản lý phê bình nhân viên trước đông người — dù phê bình đúng — đã vi phạm Kavod HaBriot. Người Do Thái có câu: "Nếu mặt một người tái đi vì lời bạn nói, bạn đã đổ máu họ."`,q:``},
+{id:21,name:"Hakarat HaTov",en:"Hakarat HaTov — Recognizing the Good",tags:["cuộc-sống","tư-duy","mental-model"],
+core:`<b>Hakarat HaTov</b> (nhận ra điều tốt đẹp) — triết lý biết ơn của người Do Thái — sâu sắc hơn "cảm ơn" thông thường. Người Do Thái coi việc <b>nhận ra</b> điều tốt đẹp — thậm chí từ kẻ thù, từ những gì không hoàn hảo — là kỹ năng đạo đức quan trọng. Ví dụ kinh điển: Moses không thể tự đánh xuống đất và sông Nile trong các tai họa, vì chính chúng đã từng cứu ông. Ngay cả đồ vật cũng đáng được biết ơn.`,
+mental:`Thực hành <b>Gratitude Journaling</b> được chứng minh qua nghiên cứu của Martin Seligman về <b>Positive Psychology</b>. Công cụ chống lại <b>Negativity Bias</b>.`,
+ex:`Bài tập Hakarat HaTov: mỗi tối, ghi lại 3 điều tốt đẹp đã xảy ra trong ngày — bao gồm cả những điều nhỏ nhặt nhất. Sau 6 tuần, nghiên cứu cho thấy mức độ hạnh phúc tăng đáng kể và triệu chứng trầm cảm giảm.`,q:``},
+{id:22,name:"Kiddush Hashem",en:"Kiddush Hashem — Excellence as Ethics",tags:["kinh-doanh","cuộc-sống","tư-duy"],
+core:`<b>Kiddush Hashem</b> (thánh hóa Danh Chúa) có nghĩa là hành xử theo cách làm cho người khác tôn trọng bạn và cộng đồng của bạn. Ngược lại, <b>Chilul Hashem</b> (phỉ báng Danh Chúa) là hành xử làm xấu hổ cộng đồng. Điều này tạo ra áp lực mạnh mẽ: mỗi hành động của một người Do Thái đều mang tính đại diện cho cả cộng đồng. Gian lận trong kinh doanh không chỉ là vi phạm pháp luật — mà là Chilul Hashem.`,
+mental:`Nguyên tắc <b>Reputation as Long-Term Asset</b> và <b>Skin in the Game</b> (Nassim Taleb) — bạn chịu trách nhiệm trực tiếp với hành động của mình trước cộng đồng.`,
+ex:`Berkshire Hathaway của Buffett: mỗi quyết định kinh doanh được đánh giá bằng câu hỏi "Nếu ngày mai tất cả mọi người biết về điều này, chúng ta có tự hào không?" Đó là Kiddush Hashem trong thực hành.`,q:``},
+{id:23,name:"Naaseh v'Nishma",en:"Naaseh v'Nishma — We Will Do and We Will Listen",tags:["tư-duy","kinh-doanh","mental-model"],
+core:`Tại núi Sinai, khi Thượng Đế đưa ra Torah, người Israel trả lời: "<b>Naaseh v'Nishma</b>" — "Chúng tôi sẽ làm và chúng tôi sẽ nghe/hiểu." Thứ tự rất quan trọng: làm trước, hiểu sau. Người Do Thái coi đây là tuyên bố của <b>Bias for Action</b>: không chờ hiểu hết mới bắt đầu — bắt đầu, và sự hiểu biết sẽ đến thông qua trải nghiệm.`,
+mental:`Triết lý của <b>Learning by Doing</b>, <b>Prototyping</b>, và <b>Minimum Viable Product</b>. Lý do người Do Thái nổi tiếng với tinh thần khởi nghiệp nhanh.`,
+ex:`Reid Hoffman, người sáng lập LinkedIn: "Nếu bạn không xấu hổ về phiên bản đầu tiên của sản phẩm, bạn đã ra mắt quá muộn." Đó là Naaseh v'Nishma — ra mắt trước, hoàn thiện sau qua phản hồi thực tế.`,
+q:`We will do, and then we will understand. — Exodus 24:7`},
+{id:24,name:"Simcha",en:"Simcha — Joy as Spiritual Practice",tags:["cuộc-sống","tâm-linh","mental-model"],
+core:`<b>Simcha</b> (niềm vui) trong tư tưởng Do Thái không phải trạng thái thụ động — mà là một <b>nghĩa vụ tinh thần chủ động</b>. Baal Shem Tov dạy rằng buồn bã là kẻ thù lớn nhất của sự phát triển tâm linh. Không phải vì nỗi đau không có thật — mà vì Simcha là sức mạnh giúp người ta trỗi dậy từ nỗi đau. Simcha không chờ hoàn cảnh thuận lợi — nó được tạo ra <b>từ bên trong, bất kể hoàn cảnh</b>.`,
+mental:`Ứng dụng tinh thần của <b>Positive Affect</b> trong tâm lý học — trạng thái tích cực giúp mở rộng phạm vi nhận thức (<b>Broaden-and-Build Theory</b> của Barbara Fredrickson).`,
+ex:`Viktor Frankl trong trại tập trung Auschwitz nhận ra: người có thể tìm thấy ý nghĩa và những khoảnh khắc niềm vui nhỏ — một bông tuyết, một đoạn âm nhạc — có tỷ lệ sống sót cao hơn. Đó là Simcha trong điều kiện khắc nghiệt nhất.`,q:``},
+{id:25,name:"Sechel",en:"Sechel — Common Sense / Practical Intelligence",tags:["tư-duy","kinh-doanh","mental-model"],
+core:`<b>Sechel</b> (trí khôn thực tiễn, óc phán đoán lành mạnh) là loại trí thông minh người Do Thái coi trọng nhất — không phải chỉ số IQ, không phải kiến thức sách vở, mà là <b>khả năng đọc tình huống và hành động đúng đắn</b>. Talmud phân biệt rõ giữa "talmid chacham" (học giả thông thái) và "baal sechel" (người có óc phán đoán): học giả biết nhiều, nhưng người có Sechel biết cách áp dụng tri thức vào thực tế.`,
+mental:`Mô tả Do Thái của <b>Practical Wisdom</b> (Phronesis của Aristotle) — loại trí tuệ biết khi nào áp dụng nguyên tắc nào. Liên quan đến <b>Street Smarts vs Book Smarts</b>.`,
+ex:`Luật sư giỏi không chỉ biết luật — họ biết khi nào nên ra tòa và khi nào nên hòa giải. Nhà đàm phán giỏi không chỉ biết chiến thuật — họ biết đọc phòng. Đó là Sechel.`,q:``},
+{id:26,name:"Dveikut",en:"Dveikut — Cleaving / Deep Connection",tags:["tâm-linh","tư-duy","cuộc-sống"],
+core:`<b>Dveikut</b> (dán chặt, kết nối sâu) là trạng thái ý thức cao nhất trong chủ nghĩa Hasidic: sự kết nối hoàn toàn với nguồn cội thiêng liêng của vũ trụ. Trong đời sống hàng ngày, Dveikut được thực hành qua <b>sự chú tâm hoàn toàn</b> — khi ăn, ăn hoàn toàn; khi nói chuyện, nói chuyện hoàn toàn. Baal Shem Tov dạy: Thượng Đế hiện diện ngay trong hành động tầm thường nhất — khi bạn làm nó với tâm hoàn toàn.`,
+mental:`Mô tả tinh thần của <b>Flow State</b> (Csikszentmihalyi) và <b>Mindfulness</b>. Nền tảng của <b>Deep Work</b> (Cal Newport).`,
+ex:`Nhạc sĩ trong trạng thái biểu diễn hoàn hảo — khi thời gian dường như dừng lại, khi không còn khoảng cách giữa người chơi và âm nhạc — đang trải nghiệm Dveikut.`,q:``},
+{id:27,name:"Histapkut",en:"Histapkut — Contentment with Less",tags:["cuộc-sống","tư-duy","mental-model"],
+core:`<b>Histapkut</b> (bằng lòng, đủ) là đối trọng cân bằng với tinh thần khởi nghiệp mạnh mẽ của người Do Thái. Người Do Thái đồng thời tin vào việc tạo ra giá trị và không để vật chất kiểm soát mình. Talmud kể về Rabbi Shimon bar Yochai, người sống trong hang động nhiều năm với thức ăn đơn sơ nhất và nảy sinh những ý tưởng thần học sâu sắc nhất. Histapkut dạy: <b>người tự do nhất không phải là người có nhiều nhất, mà là người cần ít nhất</b>.`,
+mental:`Thực hành <b>Stoic Negative Visualization</b> và <b>Hedonic Adaptation Awareness</b>. Cơ sở của <b>Essentialism</b> — tập trung vào điều thiết yếu.`,
+ex:`Steve Jobs mặc áo turtleneck đen và quần jeans mỗi ngày — loại bỏ quyết định về quần áo để bảo tồn năng lượng tinh thần cho những quyết định quan trọng hơn. Đó là Histapkut trong ứng dụng hiện đại.`,q:``},
+{id:28,name:"Gemilas Chasadim",en:"Gemilas Chasadim — Acts of Loving Kindness",tags:["cuộc-sống","kinh-doanh"],
+core:`<b>Gemilas Chasadim</b> (các hành động nhân từ) rộng hơn Tzedakah (cho tiền) — bao gồm mọi hành động giúp đỡ không vì lợi ích vật chất: thăm người ốm, an ủi người đau, đưa đám tang, giúp cô dâu chú rể. Talmud dạy: Gemilas Chasadim là một trong ba trụ cột giữ thế giới đứng vững. Điều quan trọng: đây là những hành động không thể thay thế bằng tiền — <b>chúng đòi hỏi thời gian và sự hiện diện</b>.`,
+mental:`Xây dựng <b>Social Capital</b> và <b>Trust Networks</b>. Nền tảng của <b>Relationship-First Networking</b> — xây dựng quan hệ trước khi cần.`,
+ex:`Adam Grant trong "Give and Take" chứng minh: những "giver" (cho đi không mong nhận lại) dài hạn thực ra là những người thành công nhất — vì họ xây dựng được mạng lưới lòng tin mà không ai có thể mua được.`,
+q:`The world stands on three things: Torah, worship, and acts of loving kindness. — Pirkei Avot 1:2`},
+{id:29,name:"Savlanut",en:"Savlanut — Patient Endurance",tags:["tư-duy","kinh-doanh","mental-model"],
+core:`<b>Savlanut</b> (kiên nhẫn, nhẫn chịu) trong truyền thống Do Thái không phải là thụ động chờ đợi — mà là <b>khả năng chịu đựng bất định mà không bị mất bình tĩnh hay phương hướng</b>. Người Do Thái trong lịch sử phải học cách sống trong tình trạng bất ổn triền miên — bị trục xuất, bị bức hại — nhưng vẫn xây dựng cộng đồng, vẫn duy trì văn hóa. Savlanut là cơ bắp tinh thần cho phép điều đó.`,
+mental:`Thực hành <b>Delayed Gratification</b> và <b>Resilience Building</b>. Điều kiện cần của <b>Long-Term Thinking</b> trong đầu tư và xây dựng doanh nghiệp.`,
+ex:`Amazon không có lãi trong 7 năm đầu tiên. Bezos phải viết thư hàng năm giải thích với cổ đông tại sao không nên kỳ vọng lợi nhuận ngắn hạn. Đó là Savlanut trong điều hành doanh nghiệp.`,q:``},
+{id:30,name:"Ometz Lev",en:"Ometz Lev — Courage of the Heart",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`<b>Ometz Lev</b> (can đảm từ trái tim) khác với Chutzpah bên ngoài — đây là sự can đảm hướng vào bên trong: <b>làm điều đúng kể cả khi sợ hãi, kể cả khi tốn kém, kể cả khi không ai nhìn thấy</b>. Tanakh đầy những câu chuyện về Ometz Lev: Esther đối mặt nhà vua, Daniel từ chối thờ phượng thần tượng. Điểm chung: họ đều sợ, nhưng hành động bất chấp nỗi sợ.`,
+mental:`Mô tả cổ đại của <b>Moral Courage</b> — phân biệt với lòng dũng cảm thể chất. Liên quan đến <b>Acting Under Uncertainty</b>.`,
+ex:`Nhân viên nhìn thấy sếp làm điều sai trái trong dự án. Nói ra có thể mất việc. Im lặng an toàn hơn. Ometz Lev là lên tiếng — không phải vì không sợ mất việc, mà vì điều đúng đắn quan trọng hơn sự an toàn cá nhân.`,q:``},
+{id:31,name:"Emes",en:"Emes — Truth as Foundation",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`<b>Emes</b> (sự thật) là một trong ba trụ cột giữ thế giới đứng vững — cùng với Shalom (hòa bình) và Din (công lý). Điều thú vị về mặt ngôn ngữ: trong tiếng Hebrew, từ "Emet" (sự thật) gồm ba chữ cái: Aleph (đầu bảng), Mem (giữa), và Tav (cuối) — <b>sự thật trải dài từ đầu đến cuối</b>. Từ "Sheker" (dối trá) gồm ba chữ liền nhau ở gần cuối — <b>gần gũi và dễ ngã</b>.`,
+mental:`Nền tảng của <b>Radical Transparency</b> (Ray Dalio) và <b>Epistemic Integrity</b>. Điều kiện cần của <b>Trust</b> trong mọi quan hệ.`,
+ex:`Công ty nào xây dựng văn hóa nơi mọi người nói thật — kể cả sự thật khó chịu — luôn học hỏi nhanh hơn. Enron sụp đổ không vì thiếu thông minh — mà vì thiếu Emes.`,
+q:`The world rests upon three things: truth, justice, and peace. — Pirkei Avot 1:18`},
+{id:32,name:"Zrizut",en:"Zrizut — Zealous Alacrity / Swift Action",tags:["kinh-doanh","tư-duy","mental-model"],
+core:`<b>Zrizut</b> (sự nhanh nhẹn, hăng hái) là đức hạnh của hành động mà không chần chừ — không phải vội vã thiếu suy nghĩ, mà là <b>hành động nhanh chóng khi đã quyết định</b>. Orchot Tzaddikim dạy: người lười biếng không chỉ mất cơ hội — họ mất cả đức hạnh, vì sự chần chừ dần dần bào mòn khả năng hành động. Zrizut áp dụng cả vào việc thiện: khi thấy cơ hội làm tốt, làm ngay.`,
+mental:`Ứng dụng của <b>Bias for Action</b> và nguyên tắc "Done is better than perfect". Chống lại <b>Paralysis by Analysis</b>.`,
+ex:`Người nhìn thấy cụ già ngã trên đường. Trong đầu, hai tiếng nói: "Giúp ngay!" và "Để người khác giúp... mình bận..." Zrizut là tiếng nói thứ nhất thắng — trước khi tiếng nói thứ hai kịp hoàn chỉnh câu.`,q:``},
+{id:33,name:"Seder",en:"Seder — Purposeful Order",tags:["tư-duy","kinh-doanh","mental-model"],
+core:`<b>Seder</b> (thứ tự, trật tự) là nguyên tắc tổ chức trung tâm trong văn hóa Do Thái — thể hiện rõ nhất qua lễ Passover Seder: một bữa ăn tự do nhưng được cấu trúc theo 15 bước cụ thể. Người Do Thái tin rằng <b>cấu trúc giải phóng sự sáng tạo</b>. Như bản nhạc jazz: nhạc sĩ ứng tấu trên nền hòa âm cố định — chính cấu trúc đó cho phép sự tự do thực sự.`,
+mental:`Nguyên tắc của <b>Systems Thinking</b> — cấu trúc không kìm hãm mà định hướng năng lượng. Liên quan đến <b>Getting Things Done</b> (David Allen).`,
+ex:`Các phòng mổ hiệu quả nhất trên thế giới sử dụng checklist nghiêm ngặt trước mỗi ca mổ — dù bác sĩ có 30 năm kinh nghiệm. Cấu trúc (Seder) không phủ nhận năng lực — nó bảo vệ chống lại sai sót của con người.`,q:``},
+{id:34,name:"Chiddush",en:"Chiddush — Novel Interpretation / Creative Insight",tags:["tư-duy","giáo-dục","mental-model"],
+core:`<b>Chiddush</b> (mới mẻ, sáng tạo) là khái niệm về việc tìm ra ý nghĩa mới từ văn bản cũ. Trong học Talmud, mỗi học giả được kỳ vọng phải đưa ra <b>Chiddushim</b>: những diễn giải mới, kết nối mới, ứng dụng mới. Điều này tạo ra văn hóa học thuật nơi <b>sáng tạo trí tuệ là chuẩn mực, không phải ngoại lệ</b>. Người Do Thái không học để biết — họ học để tạo ra tri thức mới.`,
+mental:`Thực hành của <b>Combinatorial Creativity</b> — sáng tạo bằng cách kết nối các ý tưởng hiện có theo cách mới. Liên quan đến <b>Cross-Domain Thinking</b>.`,
+ex:`Steve Jobs: "Sáng tạo chỉ là kết nối mọi thứ." iPhone không phải phát minh hoàn toàn mới — nó là Chiddush: kết nối máy tính cảm ứng + điện thoại + iPod theo cách chưa ai nghĩ đến.`,q:``},
+{id:35,name:"Lo Levayesh",en:"Lo Levayesh — Never Shame in Public",tags:["cuộc-sống","kinh-doanh","giáo-dục"],
+core:`<b>Lo Levayesh</b> (không làm xấu hổ) là một trong những nguyên tắc ứng xử nghiêm khắc nhất trong Talmud. Talmud tuyên bố: làm một người xấu hổ trước công chúng tương đương với việc đổ máu người đó — vì <b>danh dự con người là thứ không thể trao lại</b>. Thậm chí có quy tắc: nếu thấy ai đó làm điều sai, bạn chỉ được nhắc nhở họ một mình, không trước người khác.`,
+mental:`Nền tảng của <b>Radical Candor</b> (Kim Scott) — phản hồi thẳng thắn nhưng riêng tư, tôn trọng. Phân biệt giữa lãnh đạo xây dựng và lãnh đạo phá hủy.`,
+ex:`Giáo viên giỏi không bao giờ đọc điểm kém của học sinh trước lớp. Quản lý giỏi không bao giờ phê bình nhân viên trong cuộc họp nhóm. Phản hồi tiêu cực luôn là cuộc trò chuyện một-một. Đó là Lo Levayesh trong thực hành.`,q:``},
+{id:36,name:"Mekom HaAdam",en:"Mekom HaAdam — Finding Your Niche",tags:["cuộc-sống","kinh-doanh","tư-duy"],
+core:`"Ở nơi không có người, hãy cố gắng trở thành người." — Pirkei Avot dạy nguyên tắc <b>Mekom HaAdam</b>: nhìn thấy khoảng trống nơi cần đến nhất và lấp đầy nó. Không phải theo đám đông đến nơi đã chật — mà là <b>nhìn thấy nhu cầu chưa được đáp ứng và trở thành người đáp ứng nó</b>. Không hỏi "ai đang thành công?" mà hỏi "ai đang cần gì mà chưa ai cung cấp?"`,
+mental:`Nguyên lý của <b>Blue Ocean Strategy</b> và <b>Niche Finding</b>. Liên quan đến <b>Comparative Advantage</b>.`,
+ex:`Khi Airbnb ra đời, khách sạn đã chiếm lĩnh thị trường lưu trú. Nhưng có khoảng trống: người muốn trải nghiệm "sống như người địa phương". Airbnb nhìn thấy Mekom HaAdam — nơi chưa có ai.`,
+q:`In a place where there are no men, strive to be a man. — Hillel, Pirkei Avot 2:5`},
+{id:37,name:"Kinat Sofrim",en:"Kinat Sofrim — Scholarly Competition",tags:["giáo-dục","kinh-doanh","mental-model"],
+core:`"<b>Kinat sofrim tarbeh chochmah</b>" — Sự ganh đua của các học giả làm tăng trưởng trí tuệ. Talmud ca ngợi cạnh tranh trí tuệ là <b>động lực của sự phát triển</b>. Khi hai học giả giỏi tranh luận, cả hai đều trở nên sắc bén hơn. Điều quan trọng là phân biệt giữa cạnh tranh lành mạnh (Kinat Sofrim) và ghen ghét phá hoại (Kinah).`,
+mental:`Nguyên tắc của <b>Constructive Competition</b> và <b>Coopetition</b>. Lý thuyết đằng sau <b>Cluster Theory</b> của Michael Porter.`,
+ex:`Các startup công nghệ ở Silicon Valley cạnh tranh khốc liệt về nhân tài — nhưng đồng thời chia sẻ kiến thức tại meetup và giới thiệu cho nhau khi có cơ hội. Đó là Kinat Sofrim trong hệ sinh thái khởi nghiệp.`,
+q:`The jealousy of scholars increases wisdom. — Talmud, Bava Batra 21a`},
+{id:38,name:"HaTorah Lo BaShamayim",en:"HaTorah Lo BaShamayim — The Torah Is Not in Heaven",tags:["tư-duy","giáo-dục","mental-model"],
+core:`Một trong những câu chuyện táo bạo nhất trong Talmud: Rabbi Eliezer gọi các phép màu để chứng minh mình đúng. Nhưng Rabbi Yehoshua đứng lên nói: "<b>Lo bashamayim hi</b> — Torah không ở trên trời nữa." Và ông thắng cuộc tranh luận. Câu chuyện kết thúc bằng Thượng Đế cười vui và nói: "Con ta thắng ta." Người Do Thái học: <b>trí tuệ con người, khi được luyện rèn đúng cách, có quyền diễn giải ngay cả điều thiêng liêng nhất</b>.`,
+mental:`Ví dụ cực đoan của <b>Intellectual Autonomy</b> và <b>Anti-Authority Thinking</b> — ngay cả thẩm quyền tối cao cũng không được phép tắt tranh luận. Nền tảng của tư duy phản biện Do Thái.`,
+ex:`Trong khoa học hiện đại, nguyên tắc "không có chân lý nào là không thể nghi ngờ" — dù đó là Einstein hay Darwin — chính là HaTorah Lo BaShamayim trong áo thực nghiệm. Bằng chứng thắng thẩm quyền.`,
+q:`It is not in heaven! — Deuteronomy 30:12, cited in Talmud Bava Metzia 59b`},
+{id:39,name:"Pilpul",en:"Pilpul — Sharp Dialectical Reasoning",tags:["tư-duy","giáo-dục","mental-model"],
+core:`<b>Pilpul</b> (hạt tiêu — vị cay sắc bén) là phương pháp tranh luận Talmudic đặc trưng: liên tục đặt câu hỏi, phản bác, tìm mâu thuẫn trong lập luận của đối phương. Không phải để hủy hoại — mà để <b>nung chảy lập luận qua nhiệt độ tranh luận và chỉ giữ lại những gì không tan chảy</b>. Sinh viên Talmud học cách tự Pilpul với chính mình trước — tìm mọi lý do tại sao mình có thể sai.`,
+mental:`Nguyên mẫu của <b>Pre-Mortem Analysis</b> (Gary Klein) và <b>Devil's Advocate</b> thinking. Công cụ tìm ra lỗ hổng trong kế hoạch trước khi thực thi.`,
+ex:`Trước khi ra mắt sản phẩm, team giỏi nhất tổ chức "Failure Mode Analysis" — liệt kê mọi cách mà mọi thứ có thể sai. Đây là Pilpul ứng dụng vào quản lý sản phẩm.`,q:``},
+{id:40,name:"PaRDeS",en:"PaRDeS — Four Levels of Interpretation",tags:["tư-duy","giáo-dục","mental-model"],
+core:`<b>PaRDeS</b> là hệ thống bốn tầng diễn giải: <b>Pshat</b> (nghĩa đen), <b>Remez</b> (ẩn dụ), <b>Drash</b> (diễn giải đạo đức), và <b>Sod</b> (huyền bí, chiều sâu tinh thần). Cùng một câu văn có thể được hiểu ở cả bốn tầng — và tất cả đều đúng, ở mức độ phức tạp khác nhau. Đây là hệ thống tư duy không chỉ dừng lại ở bề mặt.`,
+mental:`Hệ thống <b>Multi-Level Analysis</b> — một vấn đề được nhìn ở nhiều chiều sâu khác nhau. Liên quan đến <b>First, Second, Third Order Thinking</b>.`,
+ex:`Nhà quản lý nhận được email phàn nàn từ khách hàng: Pshat = họ không hài lòng. Remez = có điều gì sâu hơn không được nói. Drash = cơ hội cải thiện quy trình. Sod = tín hiệu về vấn đề hệ thống lớn hơn. Bốn tầng nhìn, bốn phản ứng.`,q:``},
+{id:41,name:"Mitzvah goreret mitzvah",en:"Mitzvah Goreret Mitzvah — One Good Deed Leads to Another",tags:["cuộc-sống","tư-duy","mental-model"],
+core:`"<b>Mitzvah goreret mitzvah, aveirah goreret aveirah</b>" — Một hành động tốt kéo theo hành động tốt tiếp theo; một hành động xấu kéo theo hành động xấu tiếp theo. Talmud mô tả hiện tượng mà khoa học thần kinh hiện đại xác nhận: <b>hành vi tự tăng cường</b>. Khi bạn làm điều tốt, bạn tự xây dựng danh tính "tôi là người làm điều tốt" — và danh tính đó khiến hành động tốt tiếp theo dễ hơn.`,
+mental:`Mô tả cổ đại của <b>Identity-Based Habits</b> (James Clear trong "Atomic Habits") và <b>Behavior Loops</b>. Cũng mô tả <b>Compound Effect</b> trong hành vi.`,
+ex:`Người bắt đầu tập thể dục thường thấy rằng sau vài tuần, họ tự nhiên bắt đầu ăn uống lành mạnh hơn, ngủ đúng giờ hơn, và năng suất làm việc tăng lên — dù chỉ thay đổi một thói quen. Đó là Mitzvah goreret mitzvah.`,
+q:`One good deed brings another. — Pirkei Avot 4:2`},
+{id:42,name:"Kol Yisrael Arevim",en:"Kol Yisrael Arevim — All Are Responsible for One Another",tags:["cuộc-sống","kinh-doanh","tư-duy"],
+core:`"<b>Kol Yisrael arevim zeh la zeh</b>" — Tất cả người Israel chịu trách nhiệm cho nhau. Đây là nguyên tắc trách nhiệm tập thể triệt để: <b>không ai trong cộng đồng có thể thờ ơ với số phận của người khác</b>. Thành công của bạn bị kết nối với thành công của cộng đồng. Đây là lý do mạng lưới hỗ trợ Do Thái rất mạnh — vì đó không chỉ là lòng tốt, mà là nghĩa vụ đạo đức.`,
+mental:`Nền tảng của <b>Collective Intelligence</b>, <b>Mutual Accountability</b>, và văn hóa <b>Pay It Forward</b>. Cơ chế hoạt động của các mạng lưới tương trợ mạnh.`,
+ex:`Trong Silicon Valley, có quy tắc không nói ra: nếu ai đó giới thiệu bạn với người khác và bạn gặp được, bạn phải tích cực giới thiệu lại. Mạng lưới tốt không phải vì ai cũng tốt bụng — mà vì mọi người hiểu mình có trách nhiệm với nhau.`,
+q:`All of Israel are responsible for one another. — Talmud, Shevuot 39a`},
+{id:43,name:"Derech Eretz",en:"Derech Eretz — The Way of the World / Common Decency",tags:["cuộc-sống","giáo-dục","kinh-doanh"],
+core:`<b>Derech Eretz</b> (con đường của đất, phong cách đúng mực) là bộ quy tắc ứng xử văn minh nằm bên dưới tất cả luật lệ tôn giáo. Talmud dạy: "<b>Derech Eretz kadmah l'Torah</b>" — phong cách đúng mực đến trước Torah. Người thiếu đạo đức cơ bản trong giao tiếp không thể học được gì từ tôn giáo. Derech Eretz bao gồm: chào hỏi người lạ trước, không ngắt lời người đang nói, giữ lời hứa nhỏ nhất.`,
+mental:`Thực hành của <b>Social Grace</b> và <b>Emotional Intelligence</b> trong giao tiếp hàng ngày. Yếu tố tạo ra <b>Professional Reputation</b>.`,
+ex:`Người gửi email trả lời trong 24 giờ dù bận. Người đến họp đúng giờ. Người nhớ tên của những người mình mới gặp. Những điều nhỏ này là Derech Eretz — và chúng tạo ra ấn tượng tích lũy mạnh mẽ hơn bất kỳ thành tích lớn nào.`,
+q:`Derech eretz preceded the Torah by 26 generations. — Talmud`},
+{id:44,name:"B'tzelem Elohim",en:"B'tzelem Elohim — Created in the Image of God",tags:["tư-duy","cuộc-sống","tâm-linh"],
+core:`"<b>B'tzelem Elohim bara oto</b>" — Thượng Đế tạo ra con người theo hình ảnh của mình. Đây là tuyên bố cách mạng nhất trong lịch sử nhân loại — và không phải về ngoại hình. Trong thần học Do Thái, Thượng Đế là Đấng Sáng Tạo — nên con người được tạo theo hình ảnh Ngài nghĩa là <b>con người cũng là những người sáng tạo</b>. Khả năng sáng tạo, phán xét, và tự do ý chí là bản chất chung của mọi người.`,
+mental:`Nền tảng triết học của <b>Human Dignity</b>, <b>Autonomy</b>, và quyền sáng tạo tự do. Cơ sở của triết lý <b>Empowerment</b> trong tổ chức.`,
+ex:`Pixar xây dựng văn hóa công ty trên nguyên tắc: mỗi nhân viên, dù cấp nào, có thể đóng góp ý kiến vào bất kỳ phim nào. Sự sáng tạo không phải đặc quyền của đạo diễn — tất cả đều được tạo ra để sáng tạo.`,
+q:`And God created man in His image. — Genesis 1:27`},
+{id:45,name:"Pikuach Nefesh",en:"Pikuach Nefesh — Saving Life Overrides All",tags:["tư-duy","kinh-doanh","cuộc-sống"],
+core:`<b>Pikuach Nefesh</b> (cứu mạng sống) là nguyên tắc pháp lý Do Thái quan trọng nhất: cứu mạng người ghi đè lên hầu hết mọi điều luật tôn giáo khác — kể cả Shabbat, kể cả Yom Kippur. Nguyên tắc này dạy về <b>thứ tự ưu tiên tuyệt đối</b>: khi các nguyên tắc xung đột, phải biết cái nào thắng. Không có nguyên tắc nào là tuyệt đối khi đối mặt với điều quan trọng hơn.`,
+mental:`Ví dụ kinh điển của <b>Meta-Rules</b> (quy tắc về quy tắc) và <b>Priority Hierarchy</b> trong hệ thống quyết định. Liên quan đến <b>Triage Thinking</b>.`,
+ex:`Trong khủng hoảng doanh nghiệp, có những "Pikuach Nefesh" không thể nhượng bộ: giữ tiền mặt để trả lương, giữ uy tín với khách hàng lớn nhất, giữ team core. Mọi quy tắc khác có thể uốn nắn — những điều này không.`,q:``},
+{id:46,name:"Lifnim Mishurat HaDin",en:"Lifnim Mishurat HaDin — Beyond the Letter of the Law",tags:["kinh-doanh","cuộc-sống","mental-model"],
+core:`<b>Lifnim Mishurat HaDin</b> (vượt ngoài giới hạn của luật pháp) là nguyên tắc đạo đức cao nhất: tuân thủ luật pháp là yêu cầu tối thiểu — nhưng người tốt thực sự <b>làm nhiều hơn điều luật yêu cầu</b>. Talmud kể: người thuê thợ và công cụ thợ bị hỏng — về mặt pháp lý, người thuê không cần bồi thường. Nhưng vị Rabbi nói: "Bạn phải bồi thường." Luật pháp là sàn, không phải trần.`,
+mental:`Nền tảng của <b>Beyond Compliance</b> thinking — làm điều đúng vì đó là điều đúng, không phải vì bị bắt buộc. Triết lý của <b>Customer Delight</b>.`,
+ex:`Zappos nổi tiếng với chính sách trả hàng 365 ngày và dịch vụ khách hàng 24/7 — không phải vì luật bắt buộc, mà vì đó là điều đúng đắn với khách hàng. Lifnim Mishurat HaDin trong thương mại điện tử.`,q:``},
+{id:47,name:"Tikkun HaMiddot",en:"Tikkun HaMiddot — Repairing Character Traits",tags:["tư-duy","cuộc-sống","giáo-dục"],
+core:`<b>Tikkun HaMiddot</b> (sửa chữa các đặc điểm tính cách) là ứng dụng cá nhân của Tikkun Olam — không phải sửa chữa thế giới bên ngoài, mà là <b>sửa chữa thế giới bên trong của chính mình</b>. Mussar dạy rằng mỗi người có những "Middot" (đặc điểm tính cách) cần điều chỉnh — không phải xóa bỏ, mà là <b>cân bằng đúng mức</b>. Kiêu ngạo quá thì cần giảm; tự ti quá thì cần tăng.`,
+mental:`Ứng dụng Do Thái của <b>Character Architecture</b> — thiết kế có chủ đích các đặc điểm tính cách. Liên quan đến <b>Emotional Intelligence</b> và <b>Virtue Ethics</b>.`,
+ex:`Người nhận ra mình quá kiểm soát trong công việc nhóm áp dụng Tikkun HaMiddot: mỗi tuần, chủ động ủy thác một quyết định mà bình thường họ tự làm. Sau 3 tháng, team trở nên độc lập hơn.`,q:``},
+{id:48,name:"Tzniut",en:"Tzniut — Modesty / Not Oversharing",tags:["cuộc-sống","tư-duy","kinh-doanh"],
+core:`<b>Tzniut</b> (khiêm nhường, giữ kín) trong tư tưởng Do Thái rộng hơn nhiều: <b>không phô trương, không khoe khoang, giữ những điều quý giá nhất trong im lặng</b>. Talmud dạy: kẻ khôn không nói mình thông minh, người giàu không nói họ giàu, người hiếu học không khoe khoang kiến thức. Điều này không phải giả tạo — mà là nhận ra rằng <b>những gì thực sự sâu sắc không cần được quảng cáo</b>.`,
+mental:`Liên quan đến <b>Show, Don't Tell</b> trong viết lách và <b>Actions Over Words</b> trong lãnh đạo. Thực hành chống lại <b>Virtue Signaling</b>.`,
+ex:`Warren Buffett vẫn sống trong ngôi nhà ông mua năm 1958 với giá 31,500 đô. Giá trị thực không cần quảng cáo. Đó là Tzniut trong thực hành.`,q:``},
+{id:49,name:"Chesed",en:"Chesed — Loving Kindness / Expansive Generosity",tags:["cuộc-sống","kinh-doanh","tư-duy"],
+core:`<b>Chesed</b> (lòng nhân từ, tình yêu mở rộng) là Sefirot của sự rộng lượng không giới hạn — đặc điểm của Tổ Phụ Abraham, người nổi tiếng chào đón người lạ vào nhà dù đang ốm nặng. Chesed là năng lượng cho đi, mở rộng, bao bọc. Nhưng Kabbalah cảnh báo: Chesed không có Gevurah (ranh giới) sẽ trở thành sự buông thả nguy hiểm. <b>Lòng tốt mà không có ranh giới có thể phá hủy cả người cho lẫn người nhận.</b>`,
+mental:`Chesed + Gevurah = <b>Bounded Generosity</b> — cho đi đủ nhiều mà không quá mức. Liên quan đến <b>Healthy Boundaries in Helping Relationships</b> và <b>Compassion Fatigue Prevention</b>.`,
+ex:`Nhà từ thiện giỏi không chỉ cho tiền — họ cho đúng người, đúng lúc, đúng cách, để không tạo ra sự phụ thuộc. Nhà quản lý giỏi không chỉ ủng hộ nhân viên — họ đặt ra kỳ vọng rõ ràng. Chesed với Gevurah.`,q:``},
+{id:50,name:"Gevurah",en:"Gevurah — Strength / Boundaries / Discipline",tags:["tư-duy","kinh-doanh","cuộc-sống"],
+core:`<b>Gevurah</b> (sức mạnh, ranh giới, kỷ luật) là Sefirot đối nghịch với Chesed — năng lượng co lại, giới hạn, phán xét. Trong cuộc sống, Gevurah là <b>khả năng nói không, đặt ra tiêu chuẩn, chịu trách nhiệm về hậu quả</b>. Không phải sự tàn nhẫn — mà là sự rõ ràng. Isaac, Tổ Phụ đại diện cho Gevurah, là người biết điều mình muốn và không bị kéo đi bởi áp lực xã hội.`,
+mental:`Nền tảng của <b>Assertiveness</b>, <b>Accountability</b>, và <b>Strategic Focus</b> — nói không với điều quan trọng để có thể nói có với điều quan trọng hơn.`,
+ex:`Steve Jobs: "Innovation is saying no to 1,000 things." Ông nổi tiếng với khả năng nói không với hàng trăm ý tưởng tốt để tập trung vào một ý tưởng vĩ đại. Đó là Gevurah — ranh giới chiến lược.`,q:``},
+{id:51,name:"Tiferet",en:"Tiferet — Beauty / Harmony / Integration",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`<b>Tiferet</b> (vẻ đẹp, hài hòa) là trung tâm của Cây Sự Sống — nơi Chesed và Gevurah được cân bằng, nơi lý tưởng gặp thực tế, nơi tình yêu gặp ranh giới. Tiferet là <b>sự tổng hợp của các đối lập thành điều gì đó đẹp hơn</b>. Nhân vật đại diện là Jacob — người nhận được phước lành của Abraham (Chesed) và kỷ luật của Isaac (Gevurah) và tổng hợp chúng thành sức mạnh riêng.`,
+mental:`Mô tả tinh thần của <b>Synthesis</b> trong biện chứng pháp Hegel: Luận Đề + Phản Đề = Hợp Đề. Mô hình của <b>Integrative Thinking</b> (Roger Martin).`,
+ex:`Pixar tạo ra phim phù hợp cả trẻ em lẫn người lớn — không bằng cách chọn một đối tượng, mà bằng cách tạo ra tác phẩm vừa đơn giản vừa sâu sắc. Đó là Tiferet: vẻ đẹp của sự tổng hợp.`,q:``},
+{id:52,name:"Yesod",en:"Yesod — Foundation / Channel of Transmission",tags:["tư-duy","kinh-doanh","giáo-dục"],
+core:`<b>Yesod</b> (nền tảng) là Sefirot của sự kết nối và truyền đạt — cầu nối giữa thế giới lý tưởng bên trên và thế giới thực tế bên dưới. Người đại diện là Joseph — người có khả năng dịch giữa giấc mơ (lý tưởng) và thực tế (hành động). Yesod là <b>khả năng biến tầm nhìn thành hành động, biến ngôn ngữ học thuật thành ứng dụng thực tiễn</b>. Người có Yesod mạnh là người kết nối — họ là "nhịp cầu" giữa các thế giới.`,
+mental:`Mô tả vai trò của <b>Bridge-builder / Translator</b> trong tổ chức — người biến chiến lược thành chiến thuật, biến ý tưởng thành sản phẩm. Liên quan đến <b>Implementation Science</b>.`,
+ex:`Trong công ty, CEO là Keter (tầm nhìn); COO là Yesod — người biến tầm nhìn thành quy trình, biến chiến lược thành KPI, biến KPI thành hành động hàng ngày của team. Không có Yesod, tầm nhìn vĩ đại nhất cũng chỉ là ảo tưởng.`,q:``},
+{id:53,name:"Malkhut",en:"Malkhut — Kingdom / Manifestation in the Real World",tags:["kinh-doanh","cuộc-sống","mental-model"],
+core:`<b>Malkhut</b> (Vương Quốc) là Sefirot cuối cùng — nơi mọi thứ bên trên được thể hiện trong thế giới vật chất. Đây là thế giới của kết quả, hành động, và tác động cụ thể. Malkhut không kém quý hơn các Sefirot trên — nó là <b>điểm cuối cùng mà tất cả tâm linh phải chứng minh giá trị của mình</b>. Ý tưởng không làm ra bánh mì. Giá trị chỉ thực sự tồn tại khi được thể hiện trong thế giới thực.`,
+mental:`Nguyên tắc của <b>Execution over Ideas</b> và <b>Output over Input</b>. Liên quan đến <b>Theory of Change</b> — chuỗi nhân quả từ hoạt động đến tác động thực tế.`,
+ex:`Nhiều startup có pitch deck xuất sắc, team tài năng, và tầm nhìn cao cả — nhưng thất bại ở Malkhut: không giao hàng đúng hạn, không thực thi kế hoạch. Thiên đường mà không có mặt đất.`,q:``},
+{id:54,name:"Keter",en:"Keter — Crown / The Will Beyond Reason",tags:["tâm-linh","tư-duy","mental-model"],
+core:`<b>Keter</b> (Vương miện) là Sefirot cao nhất trong Cây Sự Sống — phía trên cả Chokhmah và Binah. Keter đại diện cho <b>Ý Chí thuần túy</b> — không phải ý muốn của bản ngã, mà là khát vọng sâu nhất của linh hồn, thứ vượt qua lý trí và cảm xúc. Người có kết nối với Keter không bị dao động bởi hoàn cảnh bên ngoài — họ hành động từ một trung tâm bất động bên trong.`,
+mental:`Mô tả <b>Intrinsic Motivation</b> ở tầng sâu nhất. Liên quan đến <b>Ikigai</b> và <b>North Star Principle</b>.`,
+ex:`Malala Yousafzai tiếp tục đòi quyền giáo dục cho trẻ em gái dù bị bắn vào đầu. Không phải vì tính toán lợi hại — mà vì đó là Keter của cô: ý chí thuần túy, không thể bị dập tắt bởi bất kỳ hoàn cảnh nào.`,q:``},
+{id:55,name:"Ein Sof",en:"Ein Sof — The Infinite / Embracing the Unknown",tags:["tâm-linh","tư-duy","mental-model"],
+core:`<b>Ein Sof</b> (không có giới hạn, vô tận) là khái niệm Kabbalistic về bản chất tối thượng của Thượng Đế — thứ không thể định nghĩa, không thể nắm bắt. Người Do Thái tin rằng nhận ra giới hạn của sự hiểu biết là <b>hình thức trí tuệ cao nhất</b>. Ein Sof không phải là sự thất bại của lý trí — đó là sự trưởng thành của lý trí, khi nó nhận ra ranh giới của chính mình.`,
+mental:`Mô tả tinh thần của <b>Epistemic Humility</b> — nhận ra rằng tri thức của mình luôn là một phần rất nhỏ của thực tại. Liên quan đến <b>Negative Knowledge</b> (biết những gì mình không biết).`,
+ex:`Richard Feynman: "Nếu bạn nghĩ mình hiểu cơ học lượng tử, bạn chưa hiểu cơ học lượng tử." Einstein: "Điều tôi biết là tôi không biết gì." Đây là thái độ Ein Sof trong khoa học.`,q:``},
+{id:56,name:"Sinat Chinam",en:"Sinat Chinam — Baseless Hatred / Root of Destruction",tags:["tư-duy","cuộc-sống","kinh-doanh"],
+core:`<b>Sinat Chinam</b> (hận thù vô cớ) là nguyên nhân mà Talmud quy cho sự sụp đổ của Đền Thờ thứ hai ở Jerusalem — dù đền thờ đó tồn tại trong thời đại học thuật rất cao. Talmud dạy: <b>kiến thức mà không có tình yêu thương không thể cứu vãn một xã hội</b>. Sinat Chinam không cần lý do — đó là điểm nguy hiểm. Khi người ta bắt đầu ghét nhau không vì gì cụ thể, cộng đồng tan vỡ từ bên trong.`,
+mental:`Mô tả <b>Tribal Hatred</b> và cơ chế của <b>Social Polarization</b>. Trong tổ chức, đây là "office politics" ở giai đoạn mãn tính.`,
+ex:`Trong nhiều công ty sụp đổ, khi nhìn lại, không phải sản phẩm tệ hay thị trường xấu — mà là nội bộ chiến với nhau. Sales ghét Engineering, Engineering khinh Marketing. Không ai còn nhớ tại sao. Đó là Sinat Chinam phá hủy từ bên trong.`,
+q:`The Temple was destroyed because of baseless hatred. — Talmud, Yoma 9b`},
+{id:57,name:"Ahavat Chinam",en:"Ahavat Chinam — Baseless Love / Unconditional Positive Regard",tags:["cuộc-sống","tư-duy","tâm-linh"],
+core:`<b>Ahavat Chinam</b> (tình yêu vô điều kiện) là giải thuốc cho Sinat Chinam. Ahavat Chinam là quyết định nhìn nhận giá trị của mỗi người <b>trước khi họ chứng minh giá trị đó</b>. Không phải vì họ xứng đáng — mà vì mọi người đều xứng đáng bởi bản chất là con người.`,
+mental:`Ứng dụng tinh thần của <b>Unconditional Positive Regard</b> (Carl Rogers) và <b>Assume Positive Intent</b> trong lãnh đạo.`,
+ex:`Satya Nadella, khi trở thành CEO Microsoft, đặt nguyên tắc "Assume positive intent" làm cốt lõi văn hóa — mọi email, mọi quyết định ban đầu được giả định xuất phát từ ý tốt. Điều này thay đổi hoàn toàn văn hóa nội bộ Microsoft trong vài năm.`,q:``},
+{id:58,name:"Mechilah",en:"Mechilah — Letting Go / Forgiveness as Liberation",tags:["cuộc-sống","tư-duy","mental-model"],
+core:`<b>Mechilah</b> (tha thứ, buông bỏ) trong tư tưởng Do Thái là <b>quyết định chủ động từ bỏ quyền đòi bồi thường</b> — không phải vì sự tổn thương không có thật, mà vì tiếp tục giữ oán giận tốn năng lượng của người tha thứ nhiều hơn người bị tha thứ. Talmud phân biệt ba tầng: Mechilah (từ bỏ yêu cầu bồi thường), Selichah (tha thứ cảm xúc), và Kapparah (xóa sạch hoàn toàn).`,
+mental:`Mechilah là thực hành <b>Forgiveness as a Self-Interest Act</b> — nghiên cứu tâm lý học xác nhận: tha thứ có lợi cho sức khỏe tinh thần và thể chất của người tha thứ.`,
+ex:`Nelson Mandela: 27 năm tù nhưng khi ra tù, ông không mang theo oán giận. "Khi tôi bước ra cổng tù, tôi biết rằng nếu không để oán giận lại phía sau, tôi vẫn còn đang ở trong tù." Đó là Mechilah.`,q:``},
+{id:59,name:"Golus",en:"Golus — Exile / Creative Power of Displacement",tags:["tư-duy","kinh-doanh","cuộc-sống"],
+core:`<b>Golus</b> (lưu vong, tha hương) là trạng thái trung tâm của lịch sử Do Thái — và người Do Thái đã học cách biến nó thành <b>sức mạnh thay vì điểm yếu</b>. Người ngoài cuộc nhìn thấy điều người trong cuộc không thấy. Người ở rìa xã hội không bị ràng buộc bởi "cách làm thông thường". Golus tạo ra sự linh hoạt, khả năng thích nghi, và nhãn quan rộng mà người định cư lâu dài thường không có.`,
+mental:`Mô tả tinh thần của <b>Outsider Advantage</b> — nhiều đổi mới đột phá đến từ "kẻ ngoại đạo" của ngành. Liên quan đến <b>Fresh Eyes Thinking</b>.`,
+ex:`Elon Musk — người Nam Phi không có nền tảng ngành ô tô — nhìn vào Tesla và thấy điều mà các kỹ sư GM hay Ford không thấy. Người ngoài cuộc không bị "cognitive capture" bởi "cách chúng tôi vẫn làm". Đó là Golus biến thành lợi thế.`,q:``},
+{id:60,name:"Teshukat HaNefesh",en:"Teshukat HaNefesh — The Soul's Yearning / Deep Purpose",tags:["tư-duy","cuộc-sống","tâm-linh"],
+core:`<b>Teshukat HaNefesh</b> (khao khát của linh hồn) là khái niệm về <b>mục đích sâu nhất</b> — không phải mục tiêu bề mặt (tiền, địa vị, công nhận), mà là khao khát nguyên thủy của linh hồn muốn thể hiện bản chất thực sự của mình. Kabbalah dạy: mỗi linh hồn đến thế giới với một nhiệm vụ duy nhất — và hạnh phúc thực sự chỉ đến khi bạn đang sống nhiệm vụ đó.`,
+mental:`Phiên bản Do Thái của <b>Ikigai</b>, <b>Purpose-Driven Life</b>, và <b>Self-Actualization</b> (Maslow). Liên quan đến nghiên cứu của Martin Seligman về "PERMA" và ý nghĩa trong cuộc sống.`,
+ex:`Viktor Frankl phát triển Liệu pháp Ý Nghĩa (Logotherapy) từ trải nghiệm trại tập trung: ông thấy rằng người có lý do để sống — dù trong điều kiện cực khổ nhất — sống sót tốt hơn người không có lý do. Teshukat HaNefesh là lý do đó.`,q:``},
+{id:61,name:"Avodat Hashem",en:"Avodat Hashem — Divine Service through Ordinary Work",tags:["kinh-doanh","tư-duy","cuộc-sống"],
+core:`<b>Avodat Hashem</b> (phục vụ Thượng Đế) trong Hasidism không có nghĩa là chỉ đứng trong nhà thờ. Baal Shem Tov cách mạng hóa tư tưởng: <b>mọi hành động tầm thường — cày ruộng, nấu ăn, kinh doanh — có thể là hành động thiêng liêng khi được thực hiện với ý thức và sự tận tâm</b>. Điều quan trọng không phải là bạn làm gì, mà là bạn làm với tâm trạng nào và mục đích gì.`,
+mental:`Tiền thân của <b>Craft Ethic</b> — làm bất kỳ việc gì với sự tận tâm hoàn toàn. Liên quan đến <b>Flow</b> và <b>Ikigai</b> — tìm thấy ý nghĩa trong công việc hàng ngày.`,
+ex:`Nhà nghiên cứu tế bào ung thư làm việc đến 2 giờ sáng không phải vì lương cao, mà vì họ thấy công việc của mình là Avodat Hashem — phục vụ sức khỏe nhân loại qua khoa học. Công việc trở thành thiêng liêng khi được làm với ý thức đầy đủ.`,q:``},
+{id:62,name:"Talmud Torah L'shma",en:"Talmud Torah L'shma — Learning for Its Own Sake",tags:["giáo-dục","tư-duy","mental-model"],
+core:`<b>Talmud Torah L'shma</b> (học tập vì chính bản thân việc học) là lý tưởng cao nhất trong giáo dục Do Thái: học không phải để thi đỗ, không phải để kiếm tiền, không phải để gây ấn tượng — mà vì <b>học tập tự thân là điều đáng giá</b>. Talmud dạy: người học vì những lý do bên ngoài sẽ tiến bộ chậm hơn người học vì niềm yêu thích thuần túy. Khi việc học trở thành phần thưởng của chính nó, không có giới hạn nào đối với sự phát triển.`,
+mental:`Khái niệm Do Thái cổ đại của <b>Intrinsic Motivation</b> (Edward Deci & Richard Ryan, Self-Determination Theory). Đối lập với <b>Extrinsic Motivation</b>.`,
+ex:`Nghiên cứu của Deci & Ryan: trẻ em được thưởng tiền khi vẽ tranh — ban đầu vẽ nhiều hơn, nhưng sau khi bỏ phần thưởng, vẽ ít hơn trước khi có phần thưởng. Talmud Torah L'shma cảnh báo điều này 2000 năm trước.`,q:``},
+{id:63,name:"Yesh Me'Ayin",en:"Yesh Me'Ayin — Creation from Nothing / Ex Nihilo",tags:["tư-duy","kinh-doanh","tâm-linh"],
+core:`<b>Yesh Me'Ayin</b> (có từ không có gì) là khái niệm triết học về sự sáng tạo từ hư vô. Hàm ý thực tiễn: <b>con người cũng có khả năng tạo ra điều chưa từng tồn tại</b>. Không cần chờ điều kiện hoàn hảo, không cần tài nguyên đầy đủ — có thể bắt đầu từ ý tưởng thuần túy và từ đó xây dựng thực tại mới.`,
+mental:`Triết học của <b>Entrepreneurial Creation</b> — nhà sáng nghiệp không phân bổ lại nguồn lực có sẵn, họ tạo ra giá trị mới. Liên quan đến <b>Zero to One</b> (Peter Thiel).`,
+ex:`Mark Zuckerberg không cải thiện một mạng xã hội đã có — ông tạo ra loại hình kết nối mới chưa từng tồn tại. Spotify không cải thiện cửa hàng đĩa nhạc — họ tạo ra mô hình tiêu thụ âm nhạc hoàn toàn mới. Đó là Yesh Me'Ayin.`,q:``},
+{id:64,name:"Am HaSefer",en:"Am HaSefer — The People of the Book",tags:["giáo-dục","tư-duy","cuộc-sống"],
+core:`Người Do Thái được gọi là "<b>Am HaSefer</b>" — Dân Của Sách. Trong văn hóa Do Thái, có sách trong nhà là dấu hiệu của địa vị và phẩm giá. Khi người Do Thái bị trục xuất khỏi Tây Ban Nha năm 1492, nhiều người mang theo ít đồ vật vật chất — nhưng mang theo bản thảo, sách, kiến thức. <b>Tri thức là tài sản duy nhất không thể bị tịch thu.</b>`,
+mental:`Am HaSefer tạo ra <b>Knowledge as Portable Capital</b> — tri thức là loại tài sản duy nhất theo bạn qua mọi hoàn cảnh. Liên quan đến <b>Human Capital Theory</b>.`,
+ex:`Người tị nạn Do Thái đến Mỹ không có tiền, không có kết nối — nhưng họ có học vấn. Trong một thế hệ, con cái họ đã trở thành bác sĩ, luật sư, giáo sư. Tri thức là vốn di động nhất.`,q:``},
+{id:65,name:"Nevuah",en:"Nevuah — Prophecy / Strategic Vision",tags:["tư-duy","kinh-doanh","mental-model"],
+core:`<b>Nevuah</b> (tiên tri, nhìn trước) trong truyền thống Do Thái không phải là ma thuật — mà là <b>khả năng nhìn thấy xu hướng và hậu quả mà người khác chưa thấy</b>. Các Tiên Tri trong Tanakh là những người nhìn vào thực trạng xã hội và nói: "Nếu tiếp tục như thế này, đây là điều sẽ xảy ra." Họ không dự đoán tương lai như nhà chiêm tinh — họ phân tích hiện tại với độ sắc nét đặc biệt và rút ra kết luận dài hạn.`,
+mental:`Mô tả cổ đại của <b>Scenario Planning</b>, <b>Futures Thinking</b>, và <b>Second-Order Effects</b> reasoning. Trong kinh doanh, đây là kỹ năng <b>Strategic Foresight</b>.`,
+ex:`Ray Dalio "tiên đoán" cuộc khủng hoảng tài chính 2008 từ năm 2004 — không phải bằng ma thuật, mà bằng cách phân tích kỹ lưỡng các chu kỳ nợ dài hạn. Đó là Nevuah trong tài chính.`,q:``},
+{id:66,name:"Klal u'Prat",en:"Klal u'Prat — General and Particular / Zoom In Zoom Out",tags:["tư-duy","giáo-dục","mental-model"],
+core:`<b>Klal u'Prat</b> (tổng quát và cụ thể) là một trong 13 nguyên tắc giải thích Torah. Nguyên tắc này dạy cách <b>di chuyển linh hoạt giữa nguyên tắc chung và ví dụ cụ thể</b>: khi thấy trường hợp cụ thể, hỏi "nguyên tắc chung đằng sau là gì?" Khi có nguyên tắc chung, hỏi "ví dụ cụ thể nhất để kiểm tra nguyên tắc này là gì?" Không mắc kẹt ở một tầng.`,
+mental:`Thực hành của <b>Inductive-Deductive Reasoning</b> — từ cụ thể đến tổng quát và ngược lại. Trong thiết kế, kỹ năng <b>Zooming In and Out</b>.`,
+ex:`Bác sĩ giỏi không chỉ điều trị triệu chứng (Prat) — họ hỏi "đây là dấu hiệu của hội chứng gì?" (Klal). Rồi từ hội chứng đó, họ tìm thêm triệu chứng khác mà bệnh nhân chưa nhận ra. Klal u'Prat trong y học lâm sàng.`,q:``},
+{id:67,name:"Bal Tashchit",en:"Bal Tashchit — Do Not Destroy / Anti-Waste Principle",tags:["tư-duy","cuộc-sống","kinh-doanh"],
+core:`<b>Bal Tashchit</b> (không được phá hủy) bắt nguồn từ lệnh cấm trong chiến tranh: không được chặt cây ăn quả của kẻ thù ngay cả trong chiến đấu. Từ đây, các Rabbi mở rộng thành nguyên tắc tổng quát: <b>không được lãng phí hay phá hủy bất cứ thứ gì có giá trị</b> — tài nguyên thiên nhiên, đồ vật, thậm chí thời gian và năng lực của con người. Người Do Thái coi lãng phí là một tội lỗi đạo đức.`,
+mental:`Triết học Do Thái về <b>Sustainability</b> và <b>Resource Efficiency</b> — 3000 năm trước khi khái niệm "môi trường bền vững" ra đời. Liên quan đến <b>Lean Thinking</b> và loại bỏ lãng phí (Muda trong Kaizen).`,
+ex:`Toyota Production System được xây dựng trên nguyên tắc loại bỏ 7 loại lãng phí. Triết lý này — sản xuất chính xác những gì cần, khi nào cần — là Bal Tashchit trong sản xuất hiện đại.`,q:``},
+{id:68,name:"Be'ito u'Vizmano",en:"Be'ito u'Vizmano — In Its Time / Timing Mastery",tags:["kinh-doanh","tư-duy","mental-model"],
+core:`"<b>Be'ito u'vizmano</b>" — đúng thời điểm của nó — là nguyên tắc về sự quan trọng của thời điểm trong mọi hành động. Torah dạy: nhiều điều không đúng hay sai về bản chất — chúng chỉ đúng hay sai tùy theo <b>thời điểm thực hiện</b>. Hành động trước thời điểm là vô ích hoặc nguy hiểm; hành động sau thời điểm là lỡ cơ hội. Người khôn ngoan biết cả chiến lược lẫn thời điểm.`,
+mental:`Nguyên tắc của <b>Strategic Timing</b> và <b>Kairos</b> (thời điểm cơ hội trong triết học Hy Lạp). Liên quan đến <b>Market Timing</b> trong kinh doanh.`,
+ex:`Uber ra mắt đúng lúc: khi smartphone đủ phổ biến, khi GPS đủ chính xác, khi kinh tế chia sẻ bắt đầu được chấp nhận. Cùng ý tưởng đó, ra đời 5 năm trước, sẽ thất bại. Be'ito u'Vizmano — thời điểm là yếu tố quyết định.`,q:``},
+{id:69,name:"Zachor",en:"Zachor — Remember / Memory as Moral Duty",tags:["tư-duy","cuộc-sống","giáo-dục"],
+core:`"<b>Zachor</b>" — hãy nhớ — là một trong những từ xuất hiện nhiều nhất trong Torah. Nhưng Zachor không phải là hoài niệm hay oán giận — đó là <b>học từ lịch sử để không lặp lại</b>. Ký ức tập thể là công cụ đạo đức. Người quên quá khứ không chỉ mất cội rễ — họ mất khả năng học hỏi từ sai lầm.`,
+mental:`Nguyên tắc của <b>Institutional Memory</b> và <b>Historical Awareness</b> trong tổ chức. Liên quan đến <b>Post-Mortem Culture</b> — ghi lại bài học từ thất bại để không lặp lại.`,
+ex:`Các công ty lớn như Google lưu trữ "Launch Post-Mortems" — tài liệu chi tiết về mọi thứ đã sai trong mỗi ra mắt sản phẩm. Không phải để xử phạt, mà để Zachor — nhớ và học.`,
+q:`Remember what Amalek did to you. — Deuteronomy 25:17`},
+{id:70,name:"Kavvanah",en:"Kavvanah — Intention / Conscious Presence in Action",tags:["tư-duy","tâm-linh","mental-model"],
+core:`<b>Kavvanah</b> (chủ tâm, ý hướng) là khái niệm về sự khác biệt giữa <b>hành động được thực hiện một cách cơ học và hành động được thực hiện với ý thức đầy đủ</b>. Talmud tranh luận: liệu Mitzvot có cần Kavvanah không? Phần lớn kết luận rằng ý hướng làm thay đổi bản chất của hành động. Cùng một lời cầu nguyện, đọc như cái máy hay đọc với sự chú tâm hoàn toàn — chúng là hai thứ khác nhau về mặt tinh thần.`,
+mental:`Tiền thân của <b>Mindful Action</b> và <b>Intentional Living</b>. Nguyên tắc của <b>Presence over Performance</b>.`,
+ex:`Sự khác biệt giữa người ăn tối với gia đình trong khi mắt nhìn điện thoại và người ăn tối với sự chú tâm hoàn toàn — về mặt vật lý giống nhau, về mặt tinh thần hoàn toàn khác. Đó là Kavvanah hay thiếu Kavvanah.`,q:``},
+{id:71,name:"Shalom",en:"Shalom — Peace / Wholeness / Completeness",tags:["cuộc-sống","tư-duy","kinh-doanh"],
+core:`<b>Shalom</b> (hòa bình) trong tiếng Hebrew bắt nguồn từ gốc "Shalem" — trọn vẹn, đầy đủ. Nghĩa là: hòa bình thực sự không phải là vắng mặt của xung đột — mà là <b>trạng thái trọn vẹn khi mọi thứ ở đúng chỗ của nó</b>. Khi cơ thể khỏe mạnh, gia đình hòa thuận, cộng đồng công bằng, và tâm hồn bình an — đó là Shalom.`,
+mental:`Shalom mô tả <b>Eudaimonia</b> (hạnh phúc trọn vẹn của Aristotle) — không phải khoái lạc nhất thời, mà là sự phồn thịnh của toàn bộ con người. Liên quan đến <b>Well-Being Theory</b> (Martin Seligman).`,
+ex:`Người thành công về tài chính nhưng gia đình tan vỡ, sức khỏe suy kiệt — không có Shalom. Người thu nhập vừa phải nhưng có sức khỏe tốt, gia đình hạnh phúc, công việc có ý nghĩa — đang sống trong Shalom. Trọn vẹn, không chỉ thành công.`,q:``},
+{id:72,name:"Koach HaDimyon",en:"Koach HaDimyon — Power of Imagination",tags:["tư-duy","giáo-dục","mental-model"],
+core:`<b>Koach HaDimyon</b> (sức mạnh của trí tưởng tượng) được Maimonides và các triết gia Do Thái thời Trung Cổ coi là một trong những năng lực tinh thần cao nhất của con người — nhưng cũng nguy hiểm nhất nếu không được hướng dẫn đúng. Người trí tuệ biết cách dùng Koach HaDimyon để <b>hình dung những gì chưa tồn tại và làm nó trở thành thực tại</b> — không phải để trốn thoát thực tế.`,
+mental:`Nền tảng của <b>Design Thinking</b>, <b>Mental Simulation</b>, và <b>Possibility Thinking</b>. Liên quan đến <b>Creative Visualization</b> trong tâm lý học hiệu suất.`,
+ex:`Elon Musk hình dung con người sống trên Sao Hỏa trước khi có bất kỳ công nghệ nào để làm điều đó. Koach HaDimyon của ông dẫn đến SpaceX. Sự tưởng tượng đi trước kỹ thuật, không phải ngược lại.`,q:``},
+{id:73,name:"Yezer HaRa / Yezer HaTov",en:"Yezer HaRa / Yezer HaTov — Dual Inclinations",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`Người Do Thái tin rằng mỗi người sinh ra với hai thiên hướng: <b>Yezer HaRa</b> (thiên hướng ích kỷ, ham muốn) và <b>Yezer HaTov</b> (thiên hướng hướng tới tốt lành). Điều cách mạng: Talmud không coi Yezer HaRa là xấu hoàn toàn. Không có Yezer HaRa, không ai xây nhà, lấy vợ, sinh con, hay kinh doanh. Yezer HaRa là <b>năng lượng thôi thúc</b> — vấn đề là hướng nó đúng chỗ. Mục tiêu không phải tiêu diệt ham muốn, mà <b>thăng hoa nó</b>.`,
+mental:`Mô hình Do Thái của <b>Dual Process Theory</b>. Cũng mô tả <b>Sublimation</b> (Freud) — chuyển hóa năng lượng bản năng thành hành động sáng tạo.`,
+ex:`Sự ganh đua (Yezer HaRa) có thể phá hủy tình bạn hoặc thúc đẩy một người vươn tới đỉnh cao. Không phải năng lượng là vấn đề — mà là hướng đi.`,q:``},
+{id:74,name:"Hatzlachah",en:"Hatzlachah — Success through Right Action",tags:["kinh-doanh","tư-duy","cuộc-sống"],
+core:`<b>Hatzlachah</b> (thành công, may mắn) trong tư tưởng Do Thái không phải là may rủi ngẫu nhiên — mà là <b>kết quả tự nhiên của hành động đúng đắn được duy trì đủ lâu</b>. Người Do Thái không tin vào "ông trời ban phước" mà không hành động. Hatzlachah là sự gặp nhau của nỗ lực con người và sự chín muồi của hoàn cảnh.`,
+mental:`Hatzlachah mô tả <b>Luck Surface Area</b> (diện tích của may mắn) — bạn tăng khả năng "may mắn" bằng cách hành động nhiều hơn và gặp gỡ nhiều người hơn. Liên quan đến <b>Preparation meets Opportunity</b>.`,
+ex:`Louis Pasteur: "Cơ hội chỉ đến với tâm trí đã được chuẩn bị." Người liên tục hành động, học hỏi, và xây dựng mối quan hệ có "diện tích may mắn" lớn hơn nhiều so với người chờ đợi cơ hội.`,q:``},
+{id:75,name:"Bitul",en:"Bitul — Self-Nullification / Ego Dissolution",tags:["tư-duy","tâm-linh","mental-model"],
+core:`<b>Bitul</b> (xóa bỏ cái tôi) là nghịch lý trung tâm của tư tưởng Chabad: <b>con người đạt được sức mạnh lớn nhất khi buông bỏ bản ngã</b>. Không phải tiêu diệt cá tính, mà là ngừng để bản ngã làm trung tâm vũ trụ. Khi bạn không cần phải đúng, không cần được công nhận, không cần bảo vệ hình ảnh — bạn có thể thấy thực tại rõ hơn, hành động hiệu quả hơn, kết nối sâu hơn.`,
+mental:`Tiền thân của <b>Ego Depletion Awareness</b> và <b>Beginner's Mind</b>. Trong lãnh đạo, nền tảng của <b>Servant Leadership</b>.`,
+ex:`Nhà đàm phán giỏi nhất không vào phòng họp với nhu cầu "thắng". Họ vào với mục tiêu "đạt được kết quả tốt nhất cho cả hai phía" — điều này cho phép họ linh hoạt và sáng tạo hơn nhiều.`,q:``},
+{id:76,name:"Ona'at Devarim",en:"Ona'at Devarim — Emotional Wrongdoing with Words",tags:["cuộc-sống","tư-duy"],
+core:`<b>Ona'at Devarim</b> (gây tổn hại bằng lời nói) là một trong những cấm kỵ đạo đức nghiêm khắc nhất trong Talmud — và bao gồm cả những điều tinh vi: nhắc lại quá khứ xấu của ai đó, hỏi người nghèo "tại sao bạn không mua cái này?", hay tra hỏi người bệnh "tại sao bạn không cẩn thận hơn?" Talmud dạy: <b>gây tổn thương tinh thần cho người khác nghiêm trọng hơn tổn thương tài chính</b>.`,
+mental:`Nghiên cứu về <b>Microaggressions</b> và <b>Psychological Safety</b> trong môi trường làm việc và cuộc sống.`,
+ex:`Câu hỏi "Ủa anh/chị vẫn chưa có con à?" hay "Bao giờ lấy vợ?" nghe có vẻ vô hại nhưng có thể gây tổn thương sâu cho người đang chịu đựng vấn đề riêng tư. Đây là Ona'at Devarim — tổn hại không cố ý nhưng thực sự.`,q:``},
+{id:77,name:"Avodah",en:"Avodah — Service / Work as Worship",tags:["tư-duy","cuộc-sống","tâm-linh"],
+core:`<b>Avodah</b> (phục vụ, làm việc, thờ phụng) là một từ tiếng Hebrew đặc biệt: nó có nghĩa đồng thời là "thờ phụng", "làm việc", và "phục vụ". Người Do Thái không phân biệt giữa ba khái niệm này — <b>mỗi hành động lao động, khi được làm với ý thức và mục đích, là một hành động thờ phụng</b>. Đây là lý do "nghề nghiệp" trong văn hóa Do Thái không chỉ là cách kiếm tiền — nó là cách đóng góp cho thế giới.`,
+mental:`Avodah là nền tảng của <b>Calling vs Career</b> distinction — sự khác biệt giữa làm việc vì tiền và làm việc vì sứ mệnh. Liên quan đến <b>Servant Leadership</b>.`,
+ex:`Bác sĩ cấp cứu làm việc 36 giờ liên tục không phải chỉ vì lương — họ cảm thấy đây là Avodah: phục vụ, làm việc, và thờ phụng điều lớn hơn bản thân họ, tất cả trong một hành động.`,q:``},
+{id:78,name:"Masorah",en:"Masorah — Tradition of Transmission / Standing on Shoulders",tags:["giáo-dục","tư-duy","cuộc-sống"],
+core:`<b>Masorah</b> (truyền thống truyền đạt) bắt đầu Pirkei Avot với một chuỗi: "Moses nhận Torah từ Sinai và truyền cho Joshua; Joshua truyền cho các Trưởng Lão..." Masorah không phải là bảo thủ cứng nhắc — mà là <b>nhận thức về mình là một mắt xích trong chuỗi dài của lịch sử</b>. Bạn nhận từ thế hệ trước và có trách nhiệm truyền lại — được làm phong phú hơn — cho thế hệ sau.`,
+mental:`Hình thức <b>Intergenerational Knowledge Transfer</b> và <b>Standing on Shoulders of Giants</b> (Newton). Tạo ra <b>Intellectual Lineage</b> — không phải tôn sùng quá khứ, mà là xây dựng trên nó.`,
+ex:`Apprenticeship (học nghề) là hình thức Masorah trong nghề thủ công. Mentorship trong công ty là Masorah trong nghề nghiệp. Tất cả đều là chuỗi truyền đạt sống động.`,
+q:`Moses received the Torah from Sinai and transmitted it to Joshua... — Pirkei Avot 1:1`},
+{id:79,name:"Dayenu",en:"Dayenu — It Would Have Been Enough",tags:["cuộc-sống","tư-duy","mental-model"],
+core:`"<b>Dayenu</b>" (đã đủ rồi) là bài hát trong lễ Passover liệt kê 15 phép màu Thượng Đế làm cho người Israel — và sau mỗi phép màu, cộng đồng hát "Dayenu! — Nếu chỉ có thế thôi cũng đã đủ rồi!" Đây là bài học về <b>biết ơn từng bước nhỏ, không chờ đến khi mọi thứ hoàn hảo</b>. Ăn mừng từng cột mốc nhỏ trên hành trình dài.`,
+mental:`Thực hành <b>Gratitude for Process</b> và chống lại <b>Arrival Fallacy</b> — ảo tưởng rằng hạnh phúc chỉ đến khi đạt được mục tiêu tiếp theo.`,
+ex:`Startup đạt được 100 người dùng đầu tiên — Dayenu. Rồi 1,000 — Dayenu. Ăn mừng từng cột mốc nhỏ không phải là thiếu tham vọng — mà là duy trì năng lượng và biết ơn trên hành trình dài.`,
+q:`Dayenu — It would have been enough! — Passover Haggadah`},
+{id:80,name:"Lo Taamod",en:"Lo Taamod — You Shall Not Stand by Idly",tags:["cuộc-sống","tư-duy","kinh-doanh"],
+core:`"<b>Lo taamod al dam re'echa</b>" — Không được đứng nhìn khi người hàng xóm đang đổ máu. Đây là mệnh lệnh Torah về <b>hành động khẩn cấp trong tình huống nguy cấp</b> — không được thụ động khi người khác cần giúp đỡ với lý do "đó không phải chuyện của tôi." Talmud mở rộng: nếu bạn thấy ai đó đang chết chìm và có thể cứu họ — bạn có nghĩa vụ làm điều đó, dù tốn kém.`,
+mental:`Nguyên tắc chống lại <b>Bystander Effect</b> (Hiệu ứng người quan sát thụ động) — xu hướng tâm lý không hành động khi có đám đông cùng chứng kiến.`,
+ex:`Nhân viên thấy đồng nghiệp đang bị bắt nạt, nhưng chọn không nói gì vì "không phải việc của mình." Theo Lo Taamod, họ đang vi phạm — sự thụ động là đồng lõa. Lên tiếng là nghĩa vụ, không phải lựa chọn.`,
+q:`You shall not stand idly by the blood of your neighbor. — Leviticus 19:16`},
+{id:81,name:"Yirat Shamayim",en:"Yirat Shamayim — Awe before the Infinite",tags:["tâm-linh","tư-duy","cuộc-sống"],
+core:`<b>Yirat Shamayim</b> (sự kính sợ Thiên Đàng) không phải sợ hãi thông thường — mà là <b>kinh ngạc trước sự vĩ đại không thể đo lường được</b>. Einstein gọi cảm giác này là "tôn giáo vũ trụ" — cảm giác đứng trước một thứ gì đó lớn hơn mình vô hạn và không thể nắm bắt hoàn toàn. Người Do Thái tin rằng Yirat Shamayim sinh ra sự khiêm tốn thực sự.`,
+mental:`Liên quan đến hiệu ứng <b>Awe Experience</b> trong tâm lý học — trải nghiệm kính ngạc được chứng minh làm giảm tự ngã và tăng cảm giác kết nối xã hội (nghiên cứu của Dacher Keltner).`,
+ex:`Carl Sagan mô tả cảm giác nhìn qua kính thiên văn Hubble: "Chúng ta là những hạt bụi lơ lửng trong một tia nắng." Đó là Yirat Shamayim trong ngôn ngữ khoa học.`,q:``},
+{id:82,name:"Shtadlan",en:"Shtadlan — The Advocate / Strategic Negotiator",tags:["kinh-doanh","tư-duy","mental-model"],
+core:`<b>Shtadlan</b> (người biện hộ, nhà đàm phán chiến lược) là vai trò lịch sử: người đại diện cho cộng đồng đàm phán với chính quyền bên ngoài. Shtadlan phải có khả năng đặc biệt: <b>hiểu sâu cả hai phía, nói ngôn ngữ của cả hai phía, và tìm ra điểm chung mà ban đầu không ai thấy</b>. Người Do Thái sinh ra trong thế giới thiểu số đã phải phát triển kỹ năng này như một kỹ năng sinh tồn.`,
+mental:`Mẫu hình của <b>Principled Negotiation</b> (Fisher & Ury trong "Getting to Yes") — tập trung vào lợi ích, không phải lập trường. Liên quan đến <b>Bicultural Competence</b>.`,
+ex:`Henry Kissinger — nhà đàm phán nổi tiếng nhất thế kỷ 20 — thể hiện đặc trưng Shtadlan: hiểu sâu cả Mỹ lẫn Liên Xô, nói ngôn ngữ của cả hai, và tìm ra không gian thỏa thuận trong Chiến tranh Lạnh.`,q:``},
+{id:83,name:"Shmirat HaBrit",en:"Shmirat HaBrit — Keeping Covenants / Sacred Agreements",tags:["kinh-doanh","cuộc-sống","mental-model"],
+core:`<b>Shmirat HaBrit</b> (giữ giao ước) là nguyên tắc giữ lời hứa và thỏa thuận ở cấp độ thiêng liêng. Trong Do Thái giáo, "Brit" (giao ước) không chỉ là hợp đồng pháp lý — đó là <b>cam kết tâm linh</b>. Người Do Thái tin rằng phá vỡ lời hứa, dù nhỏ, là phá vỡ một mảnh nhỏ của trật tự vũ trụ. Điều này giải thích tại sao người Do Thái nổi tiếng là đối tác kinh doanh đáng tin cậy.`,
+mental:`Phân biệt <b>Covenant vs Contract</b> — giao ước có chiều sâu đạo đức mà hợp đồng không có. Liên quan đến <b>Trust as Foundation of Commerce</b>.`,
+ex:`Trong nhiều cộng đồng Do Thái truyền thống, giao dịch triệu đô được thực hiện qua bắt tay trước khi có hợp đồng. Lời nói là chữ ký. Shmirat HaBrit trong kinh doanh thực tiễn.`,q:``},
+{id:84,name:"Tzaddik",en:"Tzaddik — The Righteous One / Leadership by Example",tags:["tư-duy","cuộc-sống","kinh-doanh"],
+core:`<b>Tzaddik</b> (người công chính) trong Hasidism không phải là người hoàn hảo — mà là người <b>liên tục cố gắng sống theo giá trị cao nhất của mình và trở thành kênh phước lành cho người xung quanh</b>. Baal Shem Tov dạy rằng Tzaddik không tách biệt khỏi thế giới — họ lặn sâu vào thế giới để nâng nó lên. Đây là mẫu hình lãnh đạo tinh thần: không cai trị bằng quyền lực, mà dẫn dắt bằng sự hiện diện và ví dụ sống động.`,
+mental:`Mẫu hình của <b>Transformational Leadership</b> và <b>Leadership by Moral Authority</b> — người dẫn dắt không phải bằng chức danh mà bằng sự tin tưởng được xây dựng qua hành động nhất quán.`,
+ex:`Nelson Mandela lãnh đạo không phải bằng cấp bậc — bằng 27 năm nhà tù và sự bao dung sau đó. Đây là Tzaddik trong chính trị: dẫn dắt bằng chất lượng đạo đức của cuộc sống mình sống.`,q:``},
+{id:85,name:"HaMakom",en:"HaMakom — The Omnipresent / Seeing the Whole",tags:["tư-duy","tâm-linh","mental-model"],
+core:`<b>HaMakom</b> (Nơi Chốn, với chữ hoa) là một trong những danh hiệu của Thượng Đế trong Talmud — có nghĩa là "Toàn Cảnh Không Gian", Đấng ở khắp nơi cùng một lúc. Triết học Do Thái dạy rằng khát vọng cao nhất của con người là <b>nhìn thấy bức tranh toàn cảnh</b> — không bị mắc kẹt trong một góc nhìn cục bộ. Người có trí tuệ HaMakom hiểu rằng mọi góc nhìn đều là một mảnh của thực tại lớn hơn.`,
+mental:`Mô tả tinh thần của <b>Systems Perspective</b> — khả năng nhìn hệ thống thay vì chỉ nhìn bộ phận. Liên quan đến <b>Bird's Eye View</b> và <b>Zoom Out Thinking</b>.`,
+ex:`Người quản lý giỏi nhìn cả hệ thống: đây không phải lỗi của một nhân viên — đây là vấn đề quy trình. Người phụ huynh giỏi nhìn xa hơn: đứa trẻ khóc không phải vì muốn làm khó — mà vì đang cần gì đó. Đó là HaMakom mindset.`,q:``},
+{id:86,name:"Daat Torah",en:"Daat Torah — Wisdom Applied to Life",tags:["tư-duy","giáo-dục","mental-model"],
+core:`<b>Daat Torah</b> (tri thức Torah ứng dụng vào cuộc sống) là khái niệm về việc áp dụng nguyên tắc đạo đức và triết học vào mọi quyết định trong cuộc sống — từ quyết định lớn như hôn nhân và nghề nghiệp đến quyết định nhỏ như cách ăn uống hay cách nói chuyện. Người có Daat Torah không cần tra cứu sách mỗi khi gặp tình huống — họ đã <b>nội hóa</b> các nguyên tắc đến mức chúng trở thành phản xạ tự nhiên.`,
+mental:`Daat Torah mô tả quá trình từ <b>Explicit Knowledge</b> (quy tắc rõ ràng) sang <b>Implicit Knowledge</b> (trực giác được luyện rèn). Liên quan đến <b>Expert Intuition</b> của Gary Klein.`,
+ex:`Nhà đầu tư giỏi không cần nhìn bảng số liệu dài để biết một công ty có vấn đề — họ nghe cách CEO nói chuyện và cảm nhận được ngay. Đó là Daat Torah của nghề đầu tư: nguyên tắc đã trở thành bản năng.`,q:``},
+{id:87,name:"Kavod HaMet",en:"Kavod HaMet — Honoring the Dead / Legacy Mindset",tags:["cuộc-sống","tư-duy","giáo-dục"],
+core:`<b>Kavod HaMet</b> (tôn trọng người đã khuất) là thái độ sâu sắc hơn nghi lễ đám tang: <b>nhớ đến những người đã đến trước chúng ta và sống sao cho xứng với di sản họ để lại</b>. Người Do Thái có câu: "Tên tốt quý hơn dầu thơm tốt nhất" — danh tiếng và di sản là những gì tồn tại sau khi chúng ta rời đi.`,
+mental:`Kavod HaMet tạo ra <b>Legacy Thinking</b> — sống với ý thức về những gì mình sẽ để lại. Liên quan đến <b>Memento Mori</b> (nhớ rằng bạn sẽ chết) trong triết học Stoic — không phải để bi quan, mà để sống có ý nghĩa hơn.`,
+ex:`Jeff Bezos: "Tôi muốn cuối đời nhìn lại mà không ân hận." Câu hỏi "Mình sẽ để lại gì?" định hướng những quyết định lớn trong cuộc đời ông. Đó là Kavod HaMet trong tư duy chiến lược cá nhân.`,q:``},
+{id:88,name:"Baal Teshuvah",en:"Baal Teshuvah — Master of Return / Growth Through Transformation",tags:["tư-duy","cuộc-sống","tâm-linh"],
+core:`<b>Baal Teshuvah</b> (người đã quay trở lại) là người từng đi lạc — về đạo đức, về tâm linh, về bản thân — và đã thực hiện hành trình quay về với chính mình. Talmud dạy: "Ở nơi Baal Teshuvah đứng, người công chính hoàn toàn không thể đứng được" — vì <b>sự thay đổi thực sự mạnh hơn sự hoàn hảo chưa bị thử thách</b>. Người chưa bao giờ vấp ngã không biết sức mạnh thực sự của mình.`,
+mental:`Mô hình Do Thái của <b>Post-Traumatic Growth</b> và <b>Redemptive Narrative</b> — con đường từ thất bại đến tái sinh.`,
+ex:`Steve Jobs bị đuổi khỏi Apple, trải qua giai đoạn tối tăm, lập NeXT, mua Pixar, và khi quay về Apple — ông mang theo sự trưởng thành mà ông chưa có lần đầu. Baal Teshuvah: người quay trở lại mạnh hơn vì đã qua thử thách.`,q:``},
+{id:89,name:"Aliyah",en:"Aliyah — Going Up / Ascending to Higher Purpose",tags:["tư-duy","cuộc-sống","tâm-linh"],
+core:`<b>Aliyah</b> (đi lên) trong Kabbalah có nghĩa: toàn bộ cuộc sống là một hành trình Aliyah — từ tầng thấp hơn lên tầng cao hơn của ý thức và đạo đức. Không bao giờ dừng lại ở tầng nào, dù thoải mái đến đâu. <b>Từ bỏ sự thoải mái để theo đuổi điều cao hơn</b> — đây là hành động Aliyah. Ngay cả trong lễ nghi, mỗi bước tiến về phía trước đều là thiêng liêng.`,
+mental:`Aliyah là mô tả triết học của <b>Upward Mobility</b> trong ý nghĩa sâu nhất — không chỉ về địa vị, mà về phát triển liên tục về đạo đức và ý thức. Liên quan đến <b>Never Plateau Principle</b>.`,
+ex:`Warren Buffett ở tuổi 93 vẫn đọc 500 trang sách mỗi ngày — vẫn đang trên hành trình Aliyah. Người đã thành công, tiếp tục học, tiếp tục đóng góp, tiếp tục tìm kiếm thách thức mới.`,q:``},
+{id:90,name:"Dibuk",en:"Dibuk — Attachment / What Possesses You",tags:["tư-duy","cuộc-sống","mental-model"],
+core:`<b>Dibuk</b> (ám ảnh, chiếm hữu) trong truyền thuyết Do Thái là linh hồn của người đã khuất ám vào người sống. Nhưng ý nghĩa triết học sâu hơn: <b>mỗi người chúng ta bị "ám" bởi một điều gì đó — nỗi sợ, ham muốn, chấn thương, kỳ vọng người khác</b>. Câu hỏi quan trọng không phải "bạn muốn gì?" mà là "điều gì đang kiểm soát hành vi của bạn mà bạn không nhận ra?" Nhận diện Dibuk của mình là bước đầu tiên để tự do.`,
+mental:`Ngôn ngữ thần bí mô tả <b>Unconscious Drives</b> (Freud) và các mẫu hành vi tự động không được kiểm soát có ý thức. Liên quan đến <b>Shadow Work</b> (Carl Jung).`,
+ex:`Nhiều CEO tài năng bị "ám" bởi nhu cầu kiểm soát — không thể ủy thác, phải tham gia mọi quyết định. Công ty phát triển đến mức họ không còn có thể quản lý nữa. Nhận ra Dibuk này là bước đầu của sự thay đổi.`,q:``},
+{id:91,name:"Or HaGanuz",en:"Or HaGanuz — The Hidden Light / Concealed Wisdom",tags:["tư-duy","tâm-linh","mental-model"],
+core:`<b>Or HaGanuz</b> (Ánh sáng ẩn giấu) là khái niệm thần bí: ánh sáng đầu tiên được Thượng Đế tạo ra — trước khi có mặt trời — được giấu đi vì nó quá thuần khiết cho thế giới chưa hoàn hảo. Hàm ý triết học: <b>có những hiểu biết sâu sắc nhất chỉ đến với những người đã chuẩn bị đủ để nhận chúng</b>. Sự khôn ngoan không ẩn giấu vì khắt khe — mà vì chưa đến lúc.`,
+mental:`Liên quan đến khái niệm <b>Tacit Knowledge</b> (Michael Polanyi) — những hiểu biết không thể truyền đạt bằng lời, chỉ đến qua trải nghiệm tích lũy.`,
+ex:`Nhà đầu tư mới tìm trong sách giáo khoa về "định giá doanh nghiệp" — họ học được công thức. Nhà đầu tư kỳ cựu 30 năm nhìn vào một công ty và biết ngay nó có gì đặc biệt — không thể giải thích bằng công thức. Đó là Or HaGanuz của kinh nghiệm.`,q:``},
+{id:92,name:"Yiddishkeit",en:"Yiddishkeit — Cultural DNA / Identity Architecture",tags:["cuộc-sống","tư-duy","giáo-dục"],
+core:`<b>Yiddishkeit</b> (chất Do Thái, bản sắc Do Thái) là tổng hòa của các giá trị, thực hành, và cách nhìn thế giới đặc trưng của người Do Thái — khó định nghĩa nhưng dễ nhận ra. Nó bao gồm: <b>khiếu hài hước trước nghịch cảnh, coi trọng học vấn hơn của cải, tranh luận như hành động tình cảm, và ký ức tập thể sâu sắc</b>. Yiddishkeit không phải là tôn giáo — có người Do Thái vô thần 100% nhưng vẫn mang Yiddishkeit.`,
+mental:`Ví dụ về <b>Cultural Programming</b> — những giá trị được truyền qua gia đình và cộng đồng, tạo ra <b>Shared Mental Models</b> giúp mọi người phối hợp mà không cần giải thích.`,
+ex:`Câu đùa Do Thái cổ điển: "Hai người Do Thái, ba ý kiến." Đây không phải là điểm yếu — mà là biểu hiện của văn hóa khuyến khích mỗi cá nhân có quan điểm độc lập. Đó là Yiddishkeit: đa dạng ý kiến nhưng cùng chung bản sắc.`,q:``},
+{id:93,name:"Taryag Mitzvot",en:"Taryag Mitzvot — 613 Commandments / Comprehensive Life System",tags:["tư-duy","cuộc-sống","giáo-dục"],
+core:`<b>Taryag Mitzvot</b> là 613 điều răn trong Do Thái giáo — không phải danh sách quy tắc cứng nhắc, mà là <b>một hệ thống sống toàn diện</b> bao phủ mọi lĩnh vực: nông nghiệp, kinh doanh, quan hệ gia đình, y tế, vệ sinh, thiên nhiên, ngôn ngữ. Người Do Thái không xem đây là gánh nặng — họ xem đây là khung cấu trúc biến từng khoảnh khắc thường ngày thành <b>hành động có ý nghĩa</b>.`,
+mental:`Ứng dụng cổ đại của <b>Ritual Design</b> — tạo ra các thói quen có ý nghĩa để tăng nhận thức. Liên quan đến <b>Mindfulness in Daily Life</b> và <b>Habit Stacking</b>.`,
+ex:`Người Do Thái nói lời cảm ơn ngay khi thức dậy (Modeh Ani), trước và sau bữa ăn, trước khi đi ngủ — không phải vì sợ hãi, mà vì nghi thức giúp họ luôn có mặt trong từng khoảnh khắc. Mindfulness 3000 năm trước.`,q:``},
+{id:94,name:"Kibbud Av Va'em",en:"Kibbud Av Va'em — Honoring Parents / Respecting Roots",tags:["cuộc-sống","tư-duy"],
+core:`<b>Kibbud Av Va'em</b> (tôn kính cha mẹ) là một trong Mười Điều Răn. Trong tư tưởng Do Thái, tôn kính cha mẹ là bài học về <b>nhận ra nguồn gốc của mình</b> và biết ơn những thế hệ đã dọn đường cho mình. Điều thú vị là mệnh lệnh này đặt trong bảng đầu của Mười Điều Răn — cùng với các nghĩa vụ với Thượng Đế — cho thấy mối quan hệ gia đình là nền tảng của trật tự xã hội.`,
+mental:`Liên quan đến <b>Intergenerational Thinking</b> và <b>Legacy Mindset</b> — không chỉ sống cho hiện tại mà còn là mắt xích trong chuỗi thế hệ.`,
+ex:`Các gia tộc kinh doanh Do Thái lớn thường xuyên thảo luận: "Ông nội của chúng ta đã xây dựng điều này — chúng ta sẽ để lại gì cho cháu của mình?" Tư duy liên thế hệ này tạo ra sự bền vững đặc biệt.`,q:``},
+{id:95,name:"Pikuach Neshamah",en:"Pikuach Neshamah — Saving the Soul / Mental Health Priority",tags:["cuộc-sống","giáo-dục","tư-duy"],
+core:`Bên cạnh <b>Pikuach Nefesh</b> (cứu mạng thể xác), một số truyền thống Do Thái phát triển khái niệm <b>Pikuach Neshamah</b> — cứu linh hồn. Điều này bao gồm: không được để người khác rơi vào tuyệt vọng tâm linh, phải giúp người đang mất phương hướng tìm lại ý nghĩa sống. Trong xã hội hiện đại: <b>sức khỏe tâm thần quan trọng như sức khỏe thể chất</b> — và cộng đồng có trách nhiệm với cả hai.`,
+mental:`Nền tảng triết học của <b>Psychological Safety</b> trong tổ chức và <b>Mental Health First Aid</b> trong cộng đồng.`,
+ex:`Khi nhân viên kiệt sức (burnout), đây không phải vấn đề cá nhân — đây là Pikuach Neshamah của tổ chức: môi trường làm việc đang "giết" linh hồn người ta. Tổ chức có trách nhiệm chữa lành, không chỉ cá nhân.`,q:``},
+{id:96,name:"Chibbat HaAretz",en:"Chibbat HaAretz — Love of the Land / Place-Based Identity",tags:["tư-duy","cuộc-sống","tâm-linh"],
+core:`<b>Chibbat HaAretz</b> (tình yêu với vùng đất) có triết học rộng hơn liên kết địa lý: <b>nơi chốn quan trọng, thuộc về nơi nào đó quan trọng</b>. Người Do Thái duy trì bản sắc dù bị lưu vong 2000 năm vì họ giữ trong tim một "nơi chốn" — địa lý, ký ức, văn hóa — nơi họ thuộc về. Điều này tạo ra sức mạnh tâm lý đặc biệt: biết mình từ đâu đến giúp bạn biết mình đang đi đâu.`,
+mental:`Liên quan đến <b>Rootedness as Psychological Foundation</b> — cảm giác thuộc về là nền tảng của sự tự tin và bản sắc.`,
+ex:`Người xa quê nhà lập ra các hội đồng hương, tổ chức lễ tết, duy trì văn hóa — không phải vì hoài cổ, mà vì cộng đồng gốc rễ cung cấp nền tảng tâm lý để đứng vững ở vùng đất mới.`,q:``},
+{id:97,name:"Eilu v'Eilu — Revisited",en:"Eilu v'Eilu Revisited — Living with Paradox",tags:["tư-duy","mental-model"],
+core:`Trở lại nguyên tắc vĩ đại của Talmud — "<b>Cả hai đều là lời của Thượng Đế hằng sống</b>" — ở tầng ứng dụng thực tiễn: người trưởng thành không cần giải quyết mọi mâu thuẫn trong cuộc sống. Có thể yêu tự do lẫn yêu cấu trúc. Có thể muốn thay đổi lẫn muốn ổn định. Có thể tin vào nỗ lực cá nhân lẫn tin vào sự may rủi. <b>Khả năng sống với nghịch lý mà không lo lắng</b> là dấu hiệu của sự trưởng thành nhận thức.`,
+mental:`Nền tảng của <b>Complexity Thinking</b> và khả năng chịu đựng <b>Cognitive Dissonance</b> mà không vội vã giải quyết.`,
+ex:`Nhà lãnh đạo tài ba vừa có tầm nhìn dài hạn vừa quyết đoán ngắn hạn. Vừa tự tin vừa khiêm tốn. Vừa cứng rắn với tiêu chuẩn vừa mềm mại với con người. Eilu v'Eilu — cả hai đều đúng, cùng một lúc.`,q:``},
+{id:98,name:"Adam Gadol",en:"Adam Gadol — A Great Person / Wholeness of Character",tags:["tư-duy","cuộc-sống","giáo-dục"],
+core:`<b>Adam Gadol</b> (người vĩ đại) trong văn hóa Do Thái không phải là người thành công nhất hay nổi tiếng nhất — mà là người đạt được sự <b>trọn vẹn về nhân cách</b>: học rộng, đạo đức sâu, tử tế với mọi người, khiêm tốn về thành tựu. Talmud thường kể chuyện về "Adam Gadol" bằng cách mô tả những hành động nhỏ nhặt — cách họ đối xử với người hầu, cách họ hành xử khi không có ai nhìn. Vĩ đại nằm trong chi tiết, không trong tiêu đề.`,
+mental:`Khái niệm Do Thái về <b>Character Over Credentials</b> và <b>Integrated Excellence</b> — thành công trên mọi mặt của cuộc sống, không chỉ một lĩnh vực.`,
+ex:`Albert Schweitzer — bác sĩ, nhà thần học, nhạc sĩ, triết gia, và người làm thiện nguyện ở châu Phi — có thể là ví dụ hiện đại của Adam Gadol: vĩ đại không phải vì một thứ, mà vì sự trọn vẹn đáng ngạc nhiên.`,q:``},
+{id:99,name:"Machloket",en:"Machloket — Productive Disagreement",tags:["tư-duy","kinh-doanh","mental-model"],
+core:`<b>Machloket</b> (bất đồng, tranh luận) trong văn hóa Do Thái không phải là xung đột cần tránh — đó là <b>quá trình sáng tạo chân lý</b>. Toàn bộ Talmud là một bộ sưu tập các tranh luận không được giải quyết. Câu trả lời thường được ghi lại là "Teiku" — đôi khi câu trả lời tốt nhất là thừa nhận câu hỏi vẫn còn mở. Đôi khi <b>bảo tồn câu hỏi quan trọng hơn cưỡng ép câu trả lời</b>.`,
+mental:`Machloket là thực hành của <b>Productive Conflict</b> và <b>Constructive Dissent</b>. Nền tảng của <b>Psychological Safety</b> (Amy Edmondson).`,
+ex:`Amazon có nguyên tắc "Disagree and commit" — bạn có thể phản đối một quyết định kịch liệt, nhưng khi đã quyết định xong, bạn cam kết thực hiện với toàn bộ năng lực. Đây là Machloket được quản lý chuyên nghiệp.`,q:``},
+{id:100,name:"L'Dor V'Dor",en:"L'Dor V'Dor — From Generation to Generation",tags:["cuộc-sống","giáo-dục","tư-duy","mental-model"],
+core:`"<b>L'Dor V'Dor</b>" — từ thế hệ này sang thế hệ khác — là nhịp tim của toàn bộ văn hóa Do Thái. Mọi thứ người Do Thái làm — học tập, lễ nghi, ký ức, giá trị — đều được thực hiện với ý thức về chuỗi thế hệ. Bạn không chỉ sống cho mình — bạn là mắt xích giữa những người đã đến trước và những người sẽ đến sau. Cây được trồng hôm nay bởi người già không phải để họ hưởng bóng mát, mà để con cháu họ nghỉ ngơi dưới đó.`,
+mental:`Triết lý <b>Long-Term Thinking</b> ở tầng sâu nhất — không phải kế hoạch 5 năm, mà là tư duy về di sản của thế hệ. Liên quan đến <b>Seventh Generation Principle</b> của người Iroquois và triết học <b>Sustainable Development</b>.`,
+ex:`Jeff Bezos hỏi khi ra quyết định: "Đây là quyết định tốt theo quan điểm của ai sống năm 2050, hay 2100?" Đó là L'Dor V'Dor trong tư duy kinh doanh. Trồng cây mà bóng mát của nó chỉ đến sau khi bạn không còn ở đây nữa.`,
+q:`From generation to generation, we will tell of Your greatness. — Liturgy`}
+];
+const grid=document.getElementById('cardGrid');
+const statsBar=document.getElementById('statsBar');
+const searchInput=document.getElementById('searchInput');
+const tabs=document.querySelectorAll('.tab');
+let activeFilter='all';
+let openCardId=null;
+
+function renderCards(list){
+  grid.innerHTML='';
+  if(!list.length){
+    grid.innerHTML='<div class="empty">Không tìm thấy khái niệm phù hợp. Hãy thử từ khóa khác.</div>';
+    statsBar.textContent='Không có kết quả';return;
+  }
+  statsBar.textContent=`Đang hiển thị ${list.length} khái niệm`;
+  list.forEach(c=>{
+    const div=document.createElement('div');
+    div.className='card'+(openCardId===c.id?' open':'');
+    div.innerHTML=`
+      <div class="card-header">
+        <span class="card-num">${String(c.id).padStart(2,'0')}</span>
+        <div class="card-title-wrap">
+          <div class="card-name">${c.name}</div>
+          <div class="card-en">${c.en}</div>
+          <div class="card-tags">${c.tags.map(t=>`<span class="tag ${t}">${t.replace('-',' ')}</span>`).join('')}</div>
+        </div>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-inner">
+        <div class="section-label">▸ Khái niệm &amp; Nguồn gốc</div>
+        <p>${c.core}</p>
+        ${c.mental?`<div class="section-label">▸ Liên kết Mental Model</div><p>${c.mental}</p>`:''}
+        ${c.ex?`<div class="section-label">▸ Ví dụ thực tiễn</div><div class="example-box">${c.ex}</div>`:''}
+        ${c.q?`<div class="quote-box">${c.q}</div>`:''}
+      </div></div>`;
+    div.querySelector('.card-header').addEventListener('click',()=>{
+      const wasOpen=div.classList.contains('open');
+      document.querySelectorAll('.card.open').forEach(el=>el.classList.remove('open'));
+      openCardId=null;
+      if(!wasOpen){div.classList.add('open');openCardId=c.id;
+        setTimeout(()=>div.scrollIntoView({behavior:'smooth',block:'nearest'}),50);}
+    });
+    grid.appendChild(div);
+  });
+}
+
+function getFiltered(){
+  const q=searchInput.value.toLowerCase().trim();
+  return C.filter(c=>{
+    const cat=activeFilter==='all'||c.tags.includes(activeFilter);
+    const txt=!q||c.name.toLowerCase().includes(q)||c.en.toLowerCase().includes(q)||c.core.toLowerCase().includes(q);
+    return cat&&txt;
+  });
+}
+
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  activeFilter=t.dataset.cat;openCardId=null;renderCards(getFiltered());
+}));
+searchInput.addEventListener('input',()=>{openCardId=null;renderCards(getFiltered());});
+renderCards(C);
+</script>
+</body>
+</html>
